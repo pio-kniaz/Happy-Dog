@@ -1,0 +1,20 @@
+{
+  "name": "happy-dog",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pio-kniaz/Happy-Dog.git"
+  },
+  "author": "Piotr Kniaź",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pio-kniaz/Happy-Dog/issues"
+  },
+  "homepage": "https://github.com/pio-kniaz/Happy-Dog#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
