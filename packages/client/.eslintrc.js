@@ -40,9 +40,6 @@ module.exports = {
           '@': CLIENT_ROOT_PATH,
         },
         extensions: ['.js', '.jsx'],
-        packages: [
-          'packages/*',
-        ],
       },
     },
   },
