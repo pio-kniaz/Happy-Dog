@@ -1,3 +1,6 @@
+const path = require('path');
+
+const SERVER_ROOT_PATH = path.resolve(__dirname, './src');
 module.exports = {
   env: {
     commonjs: true,
@@ -11,5 +14,15 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
+  },
+  settings: {
+    'import/resolver': {
+      'eslint-import-resolver-custom-alias': {
+        alias: {
+          '@': SERVER_ROOT_PATH,
+        },
+        extensions: ['.js', '.jsx'],
+      },
+    },
   },
 };

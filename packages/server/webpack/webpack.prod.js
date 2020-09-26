@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
+
 const SRC_PATH = path.resolve(__dirname, '../src');
 const BUILD_PATH = path.resolve(__dirname, '../../../build/server');
 
@@ -39,4 +41,4 @@ module.exports = {
   optimization: {
     minimizer: [new UglifyJSPlugin()],
   },
-}
+};
