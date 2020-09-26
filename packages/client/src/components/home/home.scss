@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  display: grid;
+}
+
+::placeholder {
+  color: gray;
+}
+
+.test {
+  columns: 1;
+}
