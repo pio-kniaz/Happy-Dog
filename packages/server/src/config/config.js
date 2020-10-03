@@ -1,3 +1,4 @@
+require('colors');
 require('dotenv').config();
 
 module.exports = {
