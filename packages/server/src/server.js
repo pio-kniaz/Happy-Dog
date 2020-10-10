@@ -1,6 +1,9 @@
 const path = require('path');
 const express = require('express');
 const config = require('@/config/config');
+const connectDB = require('@/config/db');
+
+connectDB();
 
 const app = express();
 
@@ -18,5 +21,5 @@ if (config.mode === 'production') {
 
 app.listen(config.port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Server is running in ${config.mode} mode on port ${config.port}`.magenta);
+  console.log(`Server is running in ${config.mode} mode on port ${config.port}`.cyan);
 });
