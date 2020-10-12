@@ -1,0 +1,13 @@
+@import '~@/styles/index';
+
+.sidebar {
+  &__paper {
+    width: 220px;
+    margin-top: 64px;
+    height: calc(100% - 64px);
+    &--mobile {
+      margin-top: 0;
+      height: auto;
+    }
+  }
+}

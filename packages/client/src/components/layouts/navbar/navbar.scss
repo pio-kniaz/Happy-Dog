@@ -1,0 +1,10 @@
+@import '~@/styles/index';
+
+.navbar {
+  &__left {
+  }
+  &__right {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
