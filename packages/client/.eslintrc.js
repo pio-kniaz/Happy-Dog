@@ -28,6 +28,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': [1],
     'jsx-a11y/no-noninteractive-element-interactions': [1],
     'no-plusplus': [0],
+    'import/prefer-default-export': [0],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-props-no-spreading': [1],

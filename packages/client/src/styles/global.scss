@@ -1,0 +1,24 @@
+html,
+body,
+#main {
+  height: 100%;
+}
+
+// Kalam
+@font-face {
+  font-family: 'Kalam';
+  src: url('~@/fonts/Kalam-Regular.ttf') format('truetype');
+}
+
+// Kalam Bold
+@font-face {
+  font-family: 'Kalam Bold';
+  src: url('~@/fonts/Kalam-Bold.ttf') format('truetype');
+}
+
+// Kalam Light
+@font-face {
+  font-family: 'Kalam Light';
+  src: url('~@/fonts/Kalam-Light.ttf') format('truetype');
+}
+
