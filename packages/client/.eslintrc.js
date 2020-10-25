@@ -1,6 +1,3 @@
-const path = require('path');
-
-const CLIENT_ROOT_PATH = path.resolve(__dirname, './src');
 module.exports = {
   env: {
     browser: true,
@@ -36,11 +33,8 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      'eslint-import-resolver-custom-alias': {
-        alias: {
-          '@': CLIENT_ROOT_PATH,
-        },
-        extensions: ['.js', '.jsx'],
+      webpack: {
+        config: 'webpack/webpack.common.js',
       },
     },
   },

@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
-import '@/components/layouts/main-layout/main-layout.scss';
-import Navbar from '@/components/layouts/navbar/Navbar';
-import Sidebar from '@/components/layouts/sidebar/Sidebar';
-import Footer from '@/components/layouts/footer/Footer';
+import './main-layout.scss';
+import Navbar from '@/components/navbar/Navbar';
+import Sidebar from '@/components/sidebar/Sidebar';
+import Footer from '@components/footer/Footer';
 
 function MainLayout(props) {
   const { children } = props;

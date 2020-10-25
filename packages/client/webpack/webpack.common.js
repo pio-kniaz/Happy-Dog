@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -37,6 +36,7 @@ const config = {
   resolve: {
     alias: {
       '@': SRC_PATH,
+      '@components': `${SRC_PATH}/components`,
     },
     extensions: ['.jsx', '.js', '.json'],
     modules: ['node_modules'],

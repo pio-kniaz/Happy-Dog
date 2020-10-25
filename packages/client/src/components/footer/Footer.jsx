@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-import '@/components/layouts/footer/footer.scss';
+import './footer.scss';
 
 function Footer() {
   return (

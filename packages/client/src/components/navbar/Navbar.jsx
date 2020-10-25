@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 
-import '@/components/layouts/navbar/navbar.scss';
+import './navbar.scss';
 
 function Navbar(props) {
   const { onSidebarOpen } = props;
