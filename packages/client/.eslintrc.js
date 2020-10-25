@@ -38,7 +38,7 @@ module.exports = {
       },
     },
   },
-
+  ignorePatterns: ['webpack'],
   globals: {
     __DEV__: true,
   },
