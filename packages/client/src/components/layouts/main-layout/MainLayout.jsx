@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';

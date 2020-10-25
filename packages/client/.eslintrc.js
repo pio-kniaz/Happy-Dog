@@ -30,6 +30,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-props-no-spreading': [1],
     'react/jsx-max-props-per-line': [1, { when: 'always' }],
+    'react/jsx-uses-react': [0],
+    'react/react-in-jsx-scope': [0],
   },
   settings: {
     'import/resolver': {

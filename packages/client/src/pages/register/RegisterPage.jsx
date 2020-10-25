@@ -1,7 +1,7 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 function RegisterPage() {
-  React.useEffect(() => {
+  useEffect(() => {
     console.log('RegisterPage mounted');
   }, []);
   return (

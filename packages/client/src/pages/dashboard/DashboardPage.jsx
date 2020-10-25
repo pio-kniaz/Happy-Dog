@@ -1,7 +1,7 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 function DashboardPage() {
-  React.useEffect(() => {
+  useEffect(() => {
     console.log('DashboardPages mounted');
   }, []);
   return (
