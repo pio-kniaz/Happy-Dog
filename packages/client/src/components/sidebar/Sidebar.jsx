@@ -1,4 +1,3 @@
-import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
@@ -12,7 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import '@/components/layouts/sidebar/sidebar.scss';
+import './sidebar.scss';
 
 function Sidebar(props) {
   const {

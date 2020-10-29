@@ -1,6 +1,3 @@
-const path = require('path');
-
-const CLIENT_ROOT_PATH = path.resolve(__dirname, './src');
 module.exports = {
   env: {
     browser: true,
@@ -33,18 +30,17 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-props-no-spreading': [1],
     'react/jsx-max-props-per-line': [1, { when: 'always' }],
+    'react/jsx-uses-react': [0],
+    'react/react-in-jsx-scope': [0],
   },
   settings: {
     'import/resolver': {
-      'eslint-import-resolver-custom-alias': {
-        alias: {
-          '@': CLIENT_ROOT_PATH,
-        },
-        extensions: ['.js', '.jsx'],
+      webpack: {
+        config: 'webpack/webpack.common.js',
       },
     },
   },
-
+  ignorePatterns: ['webpack'],
   globals: {
     __DEV__: true,
   },
