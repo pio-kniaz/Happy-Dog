@@ -3,10 +3,10 @@ import {
   Switch,
 } from 'react-router-dom';
 import AppRoute from '@/routes/AppRoute';
-import MainLayout from '@/components/layouts/main-layout/MainLayout';
+import { BasicLayout } from '@/components';
 
-const LoginPage = lazy(() => import('@/pages/login/LoginPage'));
-const RegisterPage = lazy(() => import('@/pages/register/RegisterPage'));
+const Login = lazy(() => import('@/pages/login/Login'));
+const Register = lazy(() => import('@/pages/register/Register'));
 
 function UnAuthenticatedRoutes() {
   return (
@@ -14,17 +14,17 @@ function UnAuthenticatedRoutes() {
       <AppRoute
         exact
         path="/"
-        layout={MainLayout}
-        component={LoginPage}
+        layout={BasicLayout}
+        component={Login}
       />
       <AppRoute
         exact
         path="/register"
-        layout={MainLayout}
-        component={RegisterPage}
+        layout={BasicLayout}
+        component={Register}
       />
       <AppRoute
-        layout={MainLayout}
+        layout={BasicLayout}
         component={() => <h1>404</h1>}
       />
     </Switch>
