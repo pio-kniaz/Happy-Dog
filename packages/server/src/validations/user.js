@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const createUserSchemaValidation = Joi.object({
   firstName: Joi.string()
-    // .pattern(new RegExp('/[a-zA-Z]+/'))
+    .regex(/[a-zA-Z]+/)
     .empty()
     .max(20)
     .required()
