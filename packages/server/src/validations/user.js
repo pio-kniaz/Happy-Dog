@@ -17,6 +17,7 @@ const createUserSchemaValidation = Joi.object({
     .max(20)
     .required(),
   email: Joi.string()
+    .lowercase()
     .required(),
   password: Joi.string()
     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),

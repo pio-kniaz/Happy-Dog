@@ -5,6 +5,7 @@ const connectDB = require('@/config/db');
 const morgan = require('morgan');
 const apiErrorHandler = require('@/error/apiErrorHandler');
 const userRoutes = require('@/routes/api/userRoutes');
+const authRoutes = require('@/routes/api/authRoutes');
 
 connectDB();
 
@@ -26,6 +27,7 @@ if (config.mode === 'production') {
 
 // Routes
 app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use(apiErrorHandler);
 app.listen(config.port, () => {
