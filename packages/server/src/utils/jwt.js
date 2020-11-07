@@ -37,7 +37,7 @@ const signTokenAccessToken = (userId) => {
     userId,
   };
   const secret = config.accessTokenSecret;
-  const options = { expiresIn: '20s' };
+  const options = { expiresIn: config.accessTokenExpires };
   try {
     const token = jwt.sign(payload, secret, options);
     return token;
@@ -51,7 +51,7 @@ const signRefreshToken = (userId) => {
     userId,
   };
   const secret = config.refreshTokenSecret;
-  const options = { expiresIn: '15m' };
+  const options = { expiresIn: config.refreshTokenExpires };
   try {
     const token = jwt.sign(payload, secret, options);
     return token;
@@ -60,9 +60,17 @@ const signRefreshToken = (userId) => {
   }
 };
 
+const sendRefreshToken = (res, refreshToken) => {
+  res.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    path: '/api/auth/refresh-token',
+  });
+};
+
 module.exports = {
   signTokenAccessToken,
   signRefreshToken,
+  sendRefreshToken,
   isAuth,
   verifyRefreshToken,
 };

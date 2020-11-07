@@ -1,8 +1,9 @@
 const path = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
 const config = require('@/config/config');
 const connectDB = require('@/config/db');
-const morgan = require('morgan');
 const apiErrorHandler = require('@/error/apiErrorHandler');
 const userRoutes = require('@/routes/api/userRoutes');
 const authRoutes = require('@/routes/api/authRoutes');
@@ -15,8 +16,8 @@ const app = express();
 app.use(express.json());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-
 app.use(morgan('dev'));
+app.use(cookieParser());
 
 if (config.mode === 'production') {
   app.use(express.static(path.join(__dirname, 'client')));
