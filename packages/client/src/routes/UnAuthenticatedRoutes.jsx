@@ -5,8 +5,7 @@ import {
 import AppRoute from '@/routes/AppRoute';
 import { BasicLayout } from '@/components';
 
-const Login = lazy(() => import('@/pages/login/Login'));
-const Register = lazy(() => import('@/pages/register/Register'));
+const Home = lazy(() => import('@/pages/home/Home'));
 
 function UnAuthenticatedRoutes() {
   return (
@@ -15,13 +14,7 @@ function UnAuthenticatedRoutes() {
         exact
         path="/"
         layout={BasicLayout}
-        component={Login}
-      />
-      <AppRoute
-        exact
-        path="/register"
-        layout={BasicLayout}
-        component={Register}
+        component={Home}
       />
       <AppRoute
         layout={BasicLayout}

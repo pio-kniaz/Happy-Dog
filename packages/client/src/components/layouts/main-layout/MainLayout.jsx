@@ -31,7 +31,7 @@ function MainLayout(props) {
   });
 
   return (
-    <div className={mainLayoutClassName}>
+    <main className={mainLayoutClassName}>
       <Navbar onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}
@@ -42,7 +42,7 @@ function MainLayout(props) {
         {children}
       </main>
       <Footer />
-    </div>
+    </main>
   );
 }
 

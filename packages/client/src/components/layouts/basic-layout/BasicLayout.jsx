@@ -4,9 +4,9 @@ import './basic-layout.scss';
 function BasicLayout(props) {
   const { children } = props;
   return (
-    <div className="basic-layout">
+    <main className="basic-layout">
       {children}
-    </div>
+    </main>
   );
 }
 
