@@ -4,6 +4,17 @@ body,
   height: 100%;
 }
 
+// Roboto
+@font-face {
+  font-family: 'Roboto';
+  src: url('~@/fonts/Roboto-Regular.ttf') format('truetype');
+}
+// Roboto Bold
+@font-face {
+  font-family: 'Roboto Bold';
+  src: url('~@/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
 // Kalam
 @font-face {
   font-family: 'Kalam';

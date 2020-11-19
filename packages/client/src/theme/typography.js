@@ -1,19 +1,39 @@
 import { palette } from '@/theme/palette';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
 
 export const typography = {
+  fontFamily: [
+    'Roboto',
+    'Roboto Bold',
+    'Kalam',
+    'Kalam Light',
+    'Kalam Bold',
+  ].join(','),
   h1: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '4rem',
     letterSpacing: '-0.24px',
-    fontFamily: 'Kalam',
+    fontSize: '3rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '3.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '4.5rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '5.5rem',
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: '6.5rem',
+    },
   },
   h2: {
     color: palette.text.primary,
     fontWeight: 500,
     fontSize: '3rem',
     letterSpacing: '-0.24px',
-    fontFamily: 'Kalam',
     lineHeight: '31px',
   },
   h3: {
@@ -21,7 +41,6 @@ export const typography = {
     fontWeight: 500,
     fontSize: '2.5rem',
     letterSpacing: '-0.06px',
-    fontFamily: 'Kalam',
   },
   h4: {
     color: palette.text.primary,
@@ -45,9 +64,11 @@ export const typography = {
   },
   subtitle1: {
     color: palette.text.primary,
-    fontSize: '1.5rem',
-    letterSpacing: '-0.05px',
-    lineHeight: '25px',
+    lineHeight: '31px',
+    fontSize: '1.2rem',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.5rem',
+    },
   },
   subtitle2: {
     color: palette.text.secondary,
@@ -61,7 +82,6 @@ export const typography = {
     fontSize: '14px',
     letterSpacing: '-0.05px',
     lineHeight: '21px',
-    fontFamily: 'Kalam',
   },
   body2: {
     color: palette.text.secondary,

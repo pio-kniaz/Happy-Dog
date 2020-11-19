@@ -6,11 +6,16 @@ function AppRoute({ component: Component, layout: Layout, ...restProps }) {
   return (
     <Route
       {...restProps}
-      render={(routeProps) => (
-        <Layout>
-          <Component {...routeProps} />
-        </Layout>
-      )}
+      render={(routeProps) => {
+        if (typeof Layout === typeof undefined) {
+          return <Component {...routeProps} />;
+        }
+        return (
+          <Layout>
+            <Component {...routeProps} />
+          </Layout>
+        );
+      }}
     />
   );
 }
