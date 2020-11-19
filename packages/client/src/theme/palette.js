@@ -5,16 +5,12 @@ const black = colors.grey[900];
 
 export const palette = {
   primary: {
-    contrastText: white,
-    dark: colors.grey[900],
-    main: colors.grey[900],
-    light: colors.grey[800],
+    main: '#14a96d',
+    contrastText: '#f0f2f5',
   },
   secondary: {
-    contrastText: white,
-    dark: colors.grey[200],
-    main: white,
-    light: colors.grey[100],
+    main: '#05386B',
+    contrastText: '#f0f2f5',
   },
   success: {
     contrastText: white,
@@ -49,6 +45,4 @@ export const palette = {
     default: white,
     paper: white,
   },
-  icon: colors.blueGrey[600],
-  divider: black,
 };

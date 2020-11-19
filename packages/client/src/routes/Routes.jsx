@@ -7,7 +7,7 @@ import AuthenticatedRoutes from '@/routes/AuthenticatedRoutes';
 import UnAuthenticatedRoutes from '@/routes/UnAuthenticatedRoutes';
 
 function Routes() {
-  const isUserLogged = false;
+  const isUserLogged = true;
   return (
     <Router>
       <Suspense fallback={<h1>Wczytywanie...</h1>}>
