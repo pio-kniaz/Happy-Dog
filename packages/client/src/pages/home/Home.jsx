@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import Footer from '@components/footer/Footer';
 import Login from '@/pages/home/login/Login';
+import { Footer } from '@components';
 
 function Home() {
   return (
