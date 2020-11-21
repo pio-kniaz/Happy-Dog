@@ -14,7 +14,7 @@ function Home() {
     >
       <Container
         maxWidth="lg"
-        className="home__wrapper"
+        className="home__top"
       >
         <Grid
           container

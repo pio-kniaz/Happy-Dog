@@ -1,30 +1,39 @@
-import { useField, ErrorMessage } from 'formik';
+import PropTypes from 'prop-types';
+import { useField } from 'formik';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Alert from '@material-ui/lab/Alert';
 
 function TextInput({
-  label, type, fullWidth, ...restProps
+  label, fullWidth, type, variant, ...restProps
 }) {
-  const [field, meta, helpers] = useField(restProps);
+  const [field, meta] = useField(restProps);
   const isError = meta.touched && meta.error;
   return (
     <FormControl fullWidth={fullWidth}>
       <TextField
-        fullWidth={fullWidth}
         error={!!isError}
         id={`input-${field.name}`}
-        label="Standard"
+        label={label}
         type={type}
+        variant={variant}
+        helperText={!!isError && meta.error}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...field}
-      />
-      <ErrorMessage
-        component="div"
-        render={(msg) => <Alert severity="error">{msg}</Alert>}
-        name={field.name}
       />
     </FormControl>
   );
 }
+TextInput.propTypes = {
+  variant: PropTypes.oneOf(['filled', 'standard', 'outlined']),
+  label: PropTypes.string,
+  type: PropTypes.string,
+  fullWidth: PropTypes.bool,
+};
+TextInput.defaultProps = {
+  variant: 'standard',
+  type: 'button',
+  label: '',
+  fullWidth: true,
+};
 
 export default TextInput;

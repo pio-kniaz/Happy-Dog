@@ -12,6 +12,10 @@ export const palette = {
     main: '#05386B',
     contrastText: '#f0f2f5',
   },
+  link: {
+    primary: '#14a96d',
+    secondary: '#000000',
+  },
   success: {
     contrastText: white,
     dark: colors.green[900],

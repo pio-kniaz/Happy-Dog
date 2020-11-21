@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
 
 import '@/pages/home/login/login.scss';
 import { CustomButton, TextInput } from '@components';
@@ -40,6 +40,7 @@ function Login() {
                   fullWidth
                   type="text"
                   name="email"
+                  label="Email"
                 />
               </Grid>
               <Grid
@@ -51,6 +52,7 @@ function Login() {
                   fullWidth
                   type="password"
                   name="password"
+                  label="Password"
                 />
                 <Grid
                   className="login__form-input login__form-input--button"
@@ -61,8 +63,18 @@ function Login() {
                     fullWidth
                     color="primary"
                     type="submit"
+                    startIcon={<PetsTwoToneIcon />}
                   >
                     Zaloguj
+                  </CustomButton>
+                  <CustomButton
+                    fullWidth
+                    variant="link"
+                    to="/password-reset"
+                    disableFocusRipple
+                    disableRipple
+                  >
+                    Nie pamietasz hasła?
                   </CustomButton>
                 </Grid>
               </Grid>
@@ -74,22 +86,13 @@ function Login() {
           xs={12}
         >
           <CustomButton
-            color="secondary"
             fullWidth
-            variant="text"
-            disableFocusRipple
-            disableRipple
+            variant="contained"
+            color="secondary"
+            onClick={() => window.alert('Open modal with register')}
           >
-            <Link to="/reset-password">
-              Nie pamietasz hasla ?
-            </Link>
+            Utwórz nowe
           </CustomButton>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          Utworz nowe konto
         </Grid>
       </Grid>
     </div>
