@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -20,6 +21,13 @@ function Navbar(props) {
     >
       <Toolbar>
         <div className="navbar__left">
+          <Hidden mdDown>
+            <IconButton
+              color="inherit"
+            >
+              Logo 🐕
+            </IconButton>
+          </Hidden>
           <Hidden lgUp>
             <IconButton
               color="inherit"

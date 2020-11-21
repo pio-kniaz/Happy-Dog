@@ -18,13 +18,15 @@ function Home() {
       >
         <Grid
           container
-          spacing={3}
+          spacing={2}
           alignItems="center"
+          justify="center"
         >
           <Grid
             item
-            xs={12}
-            sm={6}
+            sm={12}
+            md={6}
+            className="home__item home__header"
           >
             <Typography
               variant="h1"
@@ -48,8 +50,9 @@ function Home() {
           </Grid>
           <Grid
             item
-            xs={12}
-            sm={6}
+            sm={12}
+            md={6}
+            className="home__item home__login"
           >
             <Login />
           </Grid>

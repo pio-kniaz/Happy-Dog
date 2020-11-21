@@ -1,8 +1,31 @@
+@import '~@/styles/index';
+
 .home {
-  background-color: #f0f2f5;
+  background-color: $athensGrayColor;
   height: 100%;
   &__wrapper {
     padding: 8rem 2rem;
     height: calc(100% - 55px);
+  }
+  &__item {
+    width: 100%;
+  }
+  &__header {
+    max-width: 630px;
+    * {
+      font-family: 'Kalam';
+    }
+    @media (max-width: 960px) {
+      max-width: 100%;
+    }
+  }
+  &__login {
+    max-width: 430px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba($mountainMeadowColor, .1);
+    background-color: $athensGrayColor;
+    border-radius: 5px;
+    @media (max-width: 960px) {
+      max-width: 100%;
+    }
   }
 }
