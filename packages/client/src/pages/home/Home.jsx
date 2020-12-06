@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import Footer from '@components/footer/Footer';
 import Login from '@/pages/home/login/Login';
+import { Footer } from '@components';
 
 function Home() {
   return (
@@ -14,17 +14,19 @@ function Home() {
     >
       <Container
         maxWidth="lg"
-        className="home__wrapper"
+        className="home__top"
       >
         <Grid
           container
-          spacing={3}
+          spacing={2}
           alignItems="center"
+          justify="center"
         >
           <Grid
             item
-            xs={12}
-            sm={6}
+            sm={12}
+            md={6}
+            className="home__item home__header"
           >
             <Typography
               variant="h1"
@@ -48,8 +50,9 @@ function Home() {
           </Grid>
           <Grid
             item
-            xs={12}
-            sm={6}
+            sm={12}
+            md={6}
+            className="home__item home__login"
           >
             <Login />
           </Grid>

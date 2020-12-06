@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { NavLink } from 'react-router-dom';
 
 import './sidebar.scss';
 
@@ -26,22 +27,22 @@ function Sidebar(props) {
   const litItems = [
     {
       title: 'Dashboard',
-      href: '/',
+      to: '/',
       icon: <DashboardIcon />,
     },
     {
       title: 'Dogs',
-      href: '/dogs',
+      to: '/dogs',
       icon: <PeopleIcon />,
     },
     {
       title: 'Account',
-      href: '/account',
+      to: '/account',
       icon: <AccountBoxIcon />,
     },
     {
       title: 'Settings',
-      href: '/settings',
+      to: '/settings',
       icon: <SettingsIcon />,
     },
   ];
@@ -64,17 +65,28 @@ function Sidebar(props) {
         <div
           className="sidebar__content"
         >
-          <List>
-            {litItems.map((item) => (
-              <ListItem
-                button
-                key={item.title}
+          <List
+          >
+            {litItems.map(({
+              title,
+              to,
+              icon,
+            }) => (
+              <NavLink
+                to={`${to}`}
+                key={title}
+                className="sidebar__link"
+                activeClassName="sidebar__link--active"
               >
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItem>
+                <ListItem
+                  button
+                >
+                  <ListItemIcon>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={title} />
+                </ListItem>
+              </NavLink>
             ))}
           </List>
 
