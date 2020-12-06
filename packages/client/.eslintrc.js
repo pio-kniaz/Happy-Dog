@@ -42,7 +42,7 @@ module.exports = {
   },
   ignorePatterns: ['webpack'],
   globals: {
-    __DEV__: true,
+    __CONFIG__: true,
   },
 
 };

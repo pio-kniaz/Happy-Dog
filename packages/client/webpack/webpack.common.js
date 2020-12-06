@@ -37,6 +37,7 @@ const config = {
     alias: {
       '@': SRC_PATH,
       '@components': `${SRC_PATH}/components`,
+      '@api': `${SRC_PATH}/api`,
     },
     extensions: ['.jsx', '.js', '.json'],
     modules: ['node_modules'],

@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
+import { api } from '@/api';
 
 import '@/pages/home/login/login.scss';
 import { CustomButton, TextInput } from '@components';
@@ -14,6 +16,9 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 function Login() {
+  useEffect(() => {
+    api.get('api/user/users');
+  }, []);
   return (
     <div className="login">
       <Grid
