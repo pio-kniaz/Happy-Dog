@@ -1,3 +1,5 @@
+const { API_URL, MODE } = __CONFIG__;
 export const config = {
-  ...__CONFIG__,
+  API_URL,
+  MODE,
 };

@@ -1,0 +1,6 @@
+export const ACTION = {
+  MODAL: {
+    MODAL_OPEN: 'MODAL/MODAL_OPEN',
+    MODAL_CLOSE: 'MODAL/MODAL_CLOSE',
+  },
+};
