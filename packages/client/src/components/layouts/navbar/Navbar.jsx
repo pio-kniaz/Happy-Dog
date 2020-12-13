@@ -9,11 +9,16 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 
 import './navbar.scss';
+import AuthService from '@/services/AuthService';
 
 function Navbar(props) {
   const { onSidebarOpen } = props;
 
   const [notifications] = useState([]);
+  const handleLogOut = () => {
+    AuthService.signOut();
+    window.location = '/';
+  };
 
   return (
     <AppBar
@@ -49,6 +54,7 @@ function Navbar(props) {
           <IconButton
             className="navbar__sign-out"
             color="inherit"
+            onClick={handleLogOut}
           >
             <InputIcon />
           </IconButton>

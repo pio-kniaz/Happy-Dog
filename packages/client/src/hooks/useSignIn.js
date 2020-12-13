@@ -2,6 +2,8 @@ import { useMutation } from 'react-query';
 import { useSnackbar } from 'notistack';
 
 import { api } from '@api';
+import AuthService from '@/services/AuthService';
+
 import { setSnackBarOptions } from '@/utils/snackBar';
 import { SnackBarType } from '@/const/SnackBarType';
 
@@ -15,11 +17,12 @@ export const useSignIn = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   return useMutation(signInRequest, {
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       enqueueSnackbar('Success', setSnackBarOptions({
         variant: SnackBarType.success,
       }));
-    // !TODO: save access token in LocalStorage
+      AuthService.signUser(data.accessToken);
+      window.location.reload();
     },
     onError: (err) => {
       enqueueSnackbar(err.response.data.message, setSnackBarOptions({

@@ -3,11 +3,12 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 
+import AuthService from '@/services/AuthService';
 import AuthenticatedRoutes from '@/routes/AuthenticatedRoutes';
 import UnAuthenticatedRoutes from '@/routes/UnAuthenticatedRoutes';
 
 function Routes() {
-  const isUserLogged = false;
+  const isUserLogged = AuthService.isUserLogged();
   return (
     <Router>
       <Suspense fallback={<h1>Wczytywanie...</h1>}>
