@@ -15,6 +15,7 @@ function Footer() {
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         Voluptatibus eaque a suscipit ut asperiores pariatur tempora accusamus fugit veritatis.
         Nemo omnis ipsum commodi quidem, magnam eveniet repudiandae error veritatis illum.
+        !TODO: Dodac politykie cookies cos jak spotify
       </Typography>
     </div>
   );
