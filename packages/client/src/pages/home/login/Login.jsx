@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
@@ -7,9 +8,11 @@ import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 import '@/pages/home/login/login.scss';
-import { useSignIn } from '@/hooks/useSignIn';
+import { useSignIn } from '@queries/sign-in/useSignIn';
 import { loginValidationSchema } from '@/pages/home/login/loginValidationSchema';
 import { CustomButton, ButtonLink, TextInput } from '@components';
+import { openModal } from '@/redux/modal/actions';
+import { ModalType } from '@components/modal/ModalType';
 
 const formInitialValues = {
   email: '',
@@ -17,9 +20,13 @@ const formInitialValues = {
 };
 
 function Login() {
-  const [signIn, { isLoading, isSuccess }] = useSignIn();
+  const { mutate: signIn, isSuccess, isLoading } = useSignIn();
+
   const { closeSnackbar } = useSnackbar();
+
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSuccess) {
@@ -38,7 +45,12 @@ function Login() {
     signIn({ values });
   };
 
-  const openModal = () => alert('Open modal with register');
+  const handleOpenModal = () => dispatch(openModal({
+    modalType: ModalType.registerUser,
+    params: {
+      title: 'Register User',
+    },
+  }));
 
   const isButtonDisabled = isLoading || isSuccess;
 
@@ -67,7 +79,7 @@ function Login() {
             fullWidth
             variant="contained"
             color="secondary"
-            onClick={openModal}
+            onClick={handleOpenModal}
           >
             Utwórz nowe
           </CustomButton>

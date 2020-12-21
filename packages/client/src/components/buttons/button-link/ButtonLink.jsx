@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import '@components/buttons/button-link/button-link.scss';
-import CustomButton from '@components/buttons/custom-button/CustomButton';
+import { CustomButton } from '@components';
 
 function ButtonLink(props) {
   const { className, to, ...restProps } = props;

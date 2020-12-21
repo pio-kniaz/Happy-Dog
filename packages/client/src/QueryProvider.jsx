@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types';
-import { QueryCache, ReactQueryCacheProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query-devtools';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { config } from '@/config';
 
-const queryCache = new QueryCache();
+const queryClient = new QueryClient();
 
 function QueryProvider({ children }) {
   return (
-    <ReactQueryCacheProvider queryCache={queryCache}>
+    <QueryClientProvider client={queryClient}>
       {children}
       {config.MODE === 'development' && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
-    </ReactQueryCacheProvider>
+    </QueryClientProvider>
   );
 }
 
