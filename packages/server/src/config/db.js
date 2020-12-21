@@ -9,7 +9,7 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
     // eslint-disable-next-line no-console
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan);
+    console.log(`MongoDB 💾 Connected: ${conn.connection.host}`.cyan);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(`${error}`.red);

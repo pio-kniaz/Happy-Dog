@@ -1,13 +1,12 @@
 import * as Yup from 'yup';
+import { ValidationMessages } from '@/utils/validation';
 
 export const loginValidationSchema = Yup
   .object()
   .shape({
     password: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
+      .required(ValidationMessages.required),
     email: Yup.string()
-      .email('Invalid email')
-      .required('Required'),
+      .email(ValidationMessages.email)
+      .required(ValidationMessages.required),
   });

@@ -9,7 +9,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-
   },
   lastName: {
     type: String,
@@ -22,6 +21,10 @@ const userSchema = new Schema({
     lowercase: true,
     unique: true,
     trim: true,
+  },
+  gender: {
+    type: String,
+    enum: ['male', 'female'],
   },
   password: {
     type: String,
@@ -60,7 +63,7 @@ userSchema.statics.findByCredentials = async function findByCredentials(credenti
   return user;
 };
 
-userSchema.plugin(uniqueValidator, { message: 'Expected {PATH} to be unique.', type: 'mongoose-unique-validator' });
+userSchema.plugin(uniqueValidator, { message: 'Expected {PATH} to be unique.', type: 'unique-email' });
 
 const User = model('User', userSchema);
 

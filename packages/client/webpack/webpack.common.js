@@ -39,6 +39,7 @@ const config = {
       '@api': `${SRC_PATH}/api`,
       '@components': `${SRC_PATH}/components`,
       '@hooks': `${SRC_PATH}/hooks`,
+      '@queries': `${SRC_PATH}/queries`,
     },
     extensions: ['.jsx', '.js', '.json'],
     modules: ['node_modules'],

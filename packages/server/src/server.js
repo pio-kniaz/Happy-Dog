@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const config = require('@/config/config');
 const connectDB = require('@/config/db');
-const apiErrorHandler = require('@/error/apiErrorHandler');
+const apiErrorHandler = require('@/middlewares/apiErrorHandler');
 const userRoutes = require('@/routes/api/userRoutes');
 const authRoutes = require('@/routes/api/authRoutes');
 
@@ -38,7 +38,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use(apiErrorHandler);
+
 app.listen(config.port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Server is running 🚀 in ${config.mode} mode on port ${config.port}`.cyan);
+  console.log(`Server 🚀 in ${config.mode} mode on port ${config.port}`.cyan);
 });

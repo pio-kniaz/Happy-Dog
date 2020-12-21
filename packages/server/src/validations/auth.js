@@ -1,12 +1,19 @@
 const Joi = require('joi');
 
+const { ValidationMessages } = require('@/validations/validation');
+
 const loginSchemaValidation = Joi.object({
   email: Joi.string()
     .lowercase()
-    .required(),
+    .required()
+    .messages({
+      'any.required': `${ValidationMessages.required}`,
+    }),
   password: Joi.string()
-    .min(2)
-    .max(50),
+    .required()
+    .messages({
+      'any.required': `${ValidationMessages.required}`,
+    }),
 });
 
 module.exports = {
