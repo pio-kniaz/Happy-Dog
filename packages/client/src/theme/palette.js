@@ -1,11 +1,12 @@
-import { colors } from '@material-ui/core';
+import { colors } from './colors';
 
 const white = colors.grey[50];
 const black = colors.grey[900];
+const mountainMeadow = colors.mountainMeadow[600];
 
 export const palette = {
   primary: {
-    main: '#14a96d',
+    main: mountainMeadow,
     contrastText: '#f0f2f5',
   },
   secondary: {
@@ -13,7 +14,7 @@ export const palette = {
     contrastText: '#f0f2f5',
   },
   link: {
-    primary: '#14a96d',
+    primary: mountainMeadow,
     secondary: '#000000',
   },
   success: {

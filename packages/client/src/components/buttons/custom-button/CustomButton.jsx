@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import clsx from 'clsx';
 
 function CustomButton(props) {
   const {
@@ -8,11 +7,9 @@ function CustomButton(props) {
     children, variant, type, ...rest
   } = props;
 
-  const buttonClassName = clsx(`btn ${className}`);
-
   return (
     <Button
-      className={buttonClassName}
+      className={className}
       type={type}
       variant={variant}
         // eslint-disable-next-line react/jsx-props-no-spreading

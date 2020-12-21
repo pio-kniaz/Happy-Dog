@@ -1,7 +1,5 @@
 import { Typography } from '@material-ui/core';
 
-import './footer.scss';
-
 function Footer() {
   return (
     <div

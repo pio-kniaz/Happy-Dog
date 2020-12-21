@@ -1,20 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import { colors } from '@/theme/colors';
 
-import '@components/buttons/button-link/button-link.scss';
 import { CustomButton } from '@components';
+
+const useStyles = makeStyles({
+  root: {
+    color: colors.mountainMeadow[600],
+    background: 'transparent',
+    border: 0,
+    boxShadow: 'none',
+    '&:focus, &:hover, &:active': {
+      background: 'transparent',
+      boxShadow: 'none',
+      textDecoration: 'underline',
+    },
+  },
+});
 
 function ButtonLink(props) {
   const { className, to, ...restProps } = props;
 
-  const buttonClassName = clsx(`btn-link ${className}`);
+  const classes = useStyles();
+
   return (
     <CustomButton
-      className={buttonClassName}
+      className={classes.root}
       {...restProps}
-      to="to"
+      to={to}
       component={Link}
     />
   );

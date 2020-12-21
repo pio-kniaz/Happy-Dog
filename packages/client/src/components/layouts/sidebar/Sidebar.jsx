@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Drawer, useMediaQuery } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
@@ -12,15 +12,45 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { NavLink } from 'react-router-dom';
 
-import './sidebar.scss';
+import { colors } from '@/theme/colors';
+
+const useStyles = makeStyles({
+  root: {},
+  paper: {
+    marginTop: '65px',
+    backgroundColor: colors.blueGrey[50],
+    width: '220px',
+    height: '100%',
+    '&.mobile': {
+      marginTop: '0',
+    },
+  },
+  link: {
+    textDecoration: 'none',
+    height: '100%',
+    width: '100%',
+    display: 'block',
+  },
+  linkActive: {
+    textDecoration: 'none',
+    height: '100%',
+    width: '100%',
+    display: 'block',
+    '& svg': {
+      transform: 'scale(1.1)',
+      fill: colors.mountainMeadow[600],
+    },
+  },
+});
 
 function Sidebar(props) {
   const {
     open, variant, onClose,
   } = props;
 
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+  const classes = useStyles();
+
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
   });
 
@@ -47,14 +77,12 @@ function Sidebar(props) {
     },
   ];
 
-  const sidebarPaperClassName = clsx('sidebar__paper', {
-    'sidebar__paper--mobile': !isDesktop,
+  const sidebarPaperClassName = clsx(classes.paper, {
+    mobile: !isDesktop,
   });
 
   return (
-    <span
-      className="sidebar"
-    >
+    <span>
       <Drawer
         anchor="left"
         classes={{ paper: sidebarPaperClassName }}
@@ -62,11 +90,8 @@ function Sidebar(props) {
         open={open}
         variant={variant}
       >
-        <div
-          className="sidebar__content"
-        >
-          <List
-          >
+        <div>
+          <List>
             {litItems.map(({
               title,
               to,
@@ -75,8 +100,8 @@ function Sidebar(props) {
               <NavLink
                 to={`${to}`}
                 key={title}
-                className="sidebar__link"
-                activeClassName="sidebar__link--active"
+                className={classes.link}
+                activeClassName={classes.linkActive}
               >
                 <ListItem
                   button
