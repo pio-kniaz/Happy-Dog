@@ -15,7 +15,7 @@ const config = {
         },
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|svg)?$/,
         use: [
           {
             loader: 'file-loader',
