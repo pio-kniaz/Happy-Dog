@@ -1,7 +1,6 @@
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Drawer, useMediaQuery } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -14,15 +13,15 @@ import { NavLink } from 'react-router-dom';
 
 import { colors } from '@/theme/colors';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {},
   paper: {
     marginTop: '65px',
     backgroundColor: colors.blueGrey[50],
     width: '220px',
     height: '100%',
-    '&.mobile': {
-      marginTop: '0',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '0px',
     },
   },
   link: {
@@ -41,7 +40,7 @@ const useStyles = makeStyles({
       fill: colors.mountainMeadow[600],
     },
   },
-});
+}));
 
 function Sidebar(props) {
   const {
@@ -49,10 +48,6 @@ function Sidebar(props) {
   } = props;
 
   const classes = useStyles();
-
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
-    defaultMatches: true,
-  });
 
   const litItems = [
     {
@@ -77,15 +72,11 @@ function Sidebar(props) {
     },
   ];
 
-  const sidebarPaperClassName = clsx(classes.paper, {
-    mobile: !isDesktop,
-  });
-
   return (
     <span>
       <Drawer
         anchor="left"
-        classes={{ paper: sidebarPaperClassName }}
+        classes={{ paper: classes.paper }}
         onClose={onClose}
         open={open}
         variant={variant}

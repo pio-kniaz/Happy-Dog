@@ -1,14 +1,52 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
+import { colors } from '@/theme/colors';
 
-import './modal.scss';
 import RegisterUser from '@components/modal/register-user/RegisterUser';
 import { modalSelector } from '@/redux/modal/selectors';
 import { closeModal } from '@/redux/modal/actions';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  content: {
+    outline: 'none',
+  },
+  header: {
+    position: 'relative',
+    width: '100%',
+    backgroundColor: colors.mountainMeadow[600],
+    padding: '1rem',
+    borderTopLeftRadius: '10px',
+    borderTopRightRadius: '10px',
+    color: colors.blueGrey[50],
+    '& h2': {
+      margin: '0',
+    },
+  },
+  close: {
+    position: 'absolute',
+    top: '8px',
+    right: '8px',
+    cursor: 'pointer',
+  },
+  body: {
+    padding: '1rem',
+    backgroundColor: colors.blueGrey[50],
+    borderBottomRightRadius: '10px',
+    borderBottomLeftRadius: '10px',
+    maxHeight: '450px',
+    overflowY: 'auto',
+  },
+});
 
 const MODAL_COMPONENTS = {
   registerUser: RegisterUser,
@@ -16,26 +54,29 @@ const MODAL_COMPONENTS = {
 
 function TransitionsModal() {
   const { modalType, params: { title, ...restParams } } = useSelector(modalSelector);
+
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   const modalComponent = useMemo(() => {
     const ModalContent = MODAL_COMPONENTS[modalType];
     return ModalContent ? (
       <ModalContent
-        className="modal__body"
+        className={classes.body}
         params={restParams}
       />
     ) : null;
-  }, [modalType, restParams]);
+  }, [classes.body, modalType, restParams]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     dispatch(closeModal());
-  };
+  }, [dispatch]);
 
   return (
     <div>
       <Modal
-        className="modal"
+        className={classes.root}
         open={!!modalType}
         disableBackdropClick
         closeAfterTransition
@@ -45,19 +86,17 @@ function TransitionsModal() {
         }}
       >
         <Fade in={!!modalType}>
-          <>
-            <div className="modal__content">
-              {!!modalComponent && (
-              <div className="modal__header">
-                <h2 id="transition-modal-title">{title}</h2>
-                <span className="modal__close">
-                  <CloseIcon onClick={handleCloseModal} />
-                </span>
-              </div>
-              )}
-              {modalComponent}
+          <div className={classes.content}>
+            {!!modalComponent && (
+            <div className={classes.header}>
+              <h2>{title}</h2>
+              <span className={classes.close}>
+                <CloseIcon onClick={handleCloseModal} />
+              </span>
             </div>
-          </>
+            )}
+            {modalComponent}
+          </div>
         </Fade>
       </Modal>
     </div>

@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
@@ -9,13 +8,13 @@ import Sidebar from '@/components/layouts/sidebar/Sidebar';
 import Footer from '@components/layouts/footer/Footer';
 import { colors } from '@/theme/colors';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
     paddingLeft: '220px',
     paddingTop: '64px',
     backgroundColor: colors.blueGrey[50],
-    '&.mobile': {
+    [theme.breakpoints.down('md')]: {
       paddingLeft: '0',
     },
   },
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
     padding: '20px',
     width: '100%',
   },
-});
+}));
 
 function MainLayout(props) {
   const { children } = props;
@@ -39,18 +38,14 @@ function MainLayout(props) {
     defaultMatches: true,
   });
 
+  const isSidebarOpen = isDesktop ? true : sidebarOpen;
+
   const handleSidebarOpen = useCallback(() => setSidebarOpen(true), []);
 
   const handleSidebarClose = useCallback(() => setSidebarOpen(false), []);
 
-  const isSidebarOpen = isDesktop ? true : sidebarOpen;
-
-  const mainLayoutClassName = clsx(classes.root, {
-    mobile: !isDesktop,
-  });
-
   return (
-    <main className={mainLayoutClassName}>
+    <main className={classes.root}>
       <Navbar onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}

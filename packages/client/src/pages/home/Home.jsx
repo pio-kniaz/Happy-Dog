@@ -3,14 +3,12 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import clsx from 'clsx';
 
 import Login from '@/pages/home/login/Login';
 import { Footer } from '@components';
 import { colors } from '@/theme/colors';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: colors.blueGrey[50],
     minHeight: '100%',
@@ -24,8 +22,8 @@ const useStyles = makeStyles({
   content: {
     paddingTop: '3rem',
     paddingBottom: '2rem',
-    '&.shrink': {
-      maxWidth: '600px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '650px',
     },
   },
   header: {
@@ -33,7 +31,7 @@ const useStyles = makeStyles({
     maxWidth: '630px',
     marginBottom: '1rem',
     paddingRight: '2.25rem',
-    '&.fluid': {
+    [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
       paddingRight: '0px',
     },
@@ -47,25 +45,14 @@ const useStyles = makeStyles({
     boxShadow: `0 2px 4px ${colors.grey[400]}`,
     backgroundColor: colors.blueGrey[50],
     borderRadius: '5px',
-    '&.fluid': {
+    [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
     },
   },
-});
+}));
 
 function Home() {
   const classes = useStyles();
-  const isMedium = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-
-  const headerClassName = clsx(classes.header, {
-    fluid: isMedium,
-  });
-  const loginClassName = clsx(classes.login, {
-    fluid: isMedium,
-  });
-  const contentClassName = clsx(classes.content, {
-    shrink: isMedium,
-  });
 
   return (
     <Box
@@ -74,7 +61,7 @@ function Home() {
     >
       <Container
         maxWidth="lg"
-        className={contentClassName}
+        className={classes.content}
       >
         <Grid
           container
@@ -85,7 +72,7 @@ function Home() {
             item
             sm={12}
             md={6}
-            className={headerClassName}
+            className={classes.header}
           >
             <Typography
               className={classes.headerTitle}
@@ -112,7 +99,7 @@ function Home() {
             item
             sm={12}
             md={6}
-            className={loginClassName}
+            className={classes.login}
           >
             <Login />
           </Grid>
