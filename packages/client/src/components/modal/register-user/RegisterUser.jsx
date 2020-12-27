@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import { useSnackbar } from 'notistack';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 import { CustomButton } from '@components/buttons';
 import { TextInput, SelectInput, DateInput } from '@components/inputs';
@@ -67,6 +68,8 @@ function RegisterUser(props) {
 
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   const { mutateAsync: signUpMutation, isSuccess, isLoading } = useSignUp();
 
   const { enqueueSnackbar } = useSnackbar();
@@ -114,7 +117,7 @@ function RegisterUser(props) {
                       fullWidth
                       type="text"
                       name="firstName"
-                      label="First Name"
+                      label={t('input.label.firstName')}
                     />
                   </Grid>
                   <Grid
@@ -127,7 +130,7 @@ function RegisterUser(props) {
                       fullWidth
                       type="text"
                       name="lastName"
-                      label="Last Name"
+                      label={t('input.label.lastName')}
                     />
                   </Grid>
                 </Grid>
@@ -143,7 +146,7 @@ function RegisterUser(props) {
                   >
                     <DateInput
                       name="birthday"
-                      label="Birthday"
+                      label={t('input.label.birthday')}
                     />
                   </Grid>
                   <Grid
@@ -155,7 +158,7 @@ function RegisterUser(props) {
                     <SelectInput
                       fullWidth
                       name="gender"
-                      label="Gender"
+                      label={t('input.label.gender')}
                       options={genderOptions}
                     />
                   </Grid>
@@ -169,7 +172,7 @@ function RegisterUser(props) {
                     fullWidth
                     type="text"
                     name="email"
-                    label="Email"
+                    label={t('input.label.email')}
                   />
                 </Grid>
                 <Grid
@@ -193,7 +196,7 @@ function RegisterUser(props) {
                     fullWidth
                     type="password"
                     name="passwordConfirmation"
-                    label="Password Confirmation"
+                    label={t('input.label.passwordConfirmation')}
                   />
                 </Grid>
                 <Grid

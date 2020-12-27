@@ -7,6 +7,7 @@ import { store } from '@/redux/store';
 import Theme from '@/theme/Theme';
 import App from '@/App';
 import QueryProvider from '@/QueryProvider';
+import '@/i18n';
 import '@/styles/global.scss';
 
 const rootElem = document.getElementById('main');
