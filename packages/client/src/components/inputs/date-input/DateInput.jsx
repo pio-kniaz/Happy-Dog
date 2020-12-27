@@ -18,6 +18,7 @@ const useStyles = makeStyles({
   iconButton: {
     paddingBottom: '8px',
     paddingTop: '0',
+    paddingRight: '8px',
     '&:focus, &:hover, &:active': {
       backgroundColor: 'transparent',
     },
