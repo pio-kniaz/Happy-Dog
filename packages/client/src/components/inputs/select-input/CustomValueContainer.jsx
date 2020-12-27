@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { components } from 'react-select';
 
-export function CustomValueContainer(props) {
+function CustomValueContainer(props) {
   const {
     children, hasValue, selectProps: { menuIsOpen, placeholder, isError },
   } = props;
   const shouldFloatLabel = menuIsOpen || hasValue;
 
-  const selectFieldLabelClassName = clsx('MuiFormLabel-root MuiInputLabel-formControl MuiInputLabel-animated select-field__label', {
+  const selectFieldLabelClassName = clsx('MuiFormLabel-root MuiInputLabel-formControl MuiInputLabel-animated', {
     'MuiInputLabel-shrink': shouldFloatLabel,
     'active Mui-focused': menuIsOpen,
     active: hasValue,
@@ -33,3 +33,5 @@ CustomValueContainer.propTypes = {
   hasValue: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
+
+export default CustomValueContainer;

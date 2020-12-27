@@ -6,8 +6,8 @@ import { Formik, Form } from 'formik';
 import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
 import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { makeStyles } from '@material-ui/core/styles';
 
-import '@/pages/home/login/login.scss';
 import { useSignIn } from '@queries/sign-in/useSignIn';
 import { loginValidationSchema } from '@/pages/home/login/loginValidationSchema';
 import { CustomButton, ButtonLink, TextInput } from '@components';
@@ -19,8 +19,35 @@ const formInitialValues = {
   password: '',
 };
 
+const useStyles = makeStyles({
+  root: {
+    padding: '2rem',
+    margin: 'auto',
+  },
+  form: {
+    width: '100%',
+    marginTop: '1rem',
+    marginBottom: '1rem',
+  },
+  input: {
+    marginTop: '1rem',
+    marginBottom: '1rem',
+  },
+  buttons: {
+    marginTop: '1.25rem',
+    marginBottom: '1rem',
+    '& button': {
+      '&:first-of-type': {
+        marginBottom: '0.75rem',
+      },
+    },
+  },
+});
+
 function Login() {
   const { mutate: signIn, isSuccess, isLoading } = useSignIn();
+
+  const classes = useStyles();
 
   const { closeSnackbar } = useSnackbar();
 
@@ -55,7 +82,7 @@ function Login() {
   const isButtonDisabled = isLoading || isSuccess;
 
   return (
-    <div className="login">
+    <div className={classes.root}>
       <Grid
         container
       >
@@ -92,10 +119,12 @@ function Login() {
 function LoginForm(props) {
   const { isButtonDisabled } = props;
 
+  const classes = useStyles();
+
   return (
-    <Form className="login__form">
+    <Form className={classes.form}>
       <Grid
-        className="login__form-input"
+        className={classes.input}
         item
         xs={12}
       >
@@ -107,7 +136,7 @@ function LoginForm(props) {
         />
       </Grid>
       <Grid
-        className="login__form-input"
+        className={classes.input}
         item
         xs={12}
       >
@@ -118,7 +147,7 @@ function LoginForm(props) {
           label="Password"
         />
         <Grid
-          className="login__form-input login__form-input--button"
+          className={classes.buttons}
           item
           xs={12}
         >
@@ -132,6 +161,7 @@ function LoginForm(props) {
             Zaloguj
           </CustomButton>
           <ButtonLink
+            className=""
             disabled={isButtonDisabled}
             fullWidth
             to="/password-reset"

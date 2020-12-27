@@ -4,15 +4,29 @@ import PropTypes from 'prop-types';
 import {
   AppBar, Toolbar, Badge, Hidden, IconButton,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
+import { colors } from '@/theme/colors';
 
-import './navbar.scss';
 import AuthService from '@/services/AuthService';
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: colors.mountainMeadow[600],
+  },
+  left: {},
+  right: {
+    flexGrow: '1',
+    textAlign: 'right',
+  },
+});
 
 function Navbar(props) {
   const { onSidebarOpen } = props;
+
+  const classes = useStyles();
 
   const [notifications] = useState([]);
   const handleLogOut = () => {
@@ -22,10 +36,10 @@ function Navbar(props) {
 
   return (
     <AppBar
-      className="navbar"
+      className={classes.root}
     >
       <Toolbar>
-        <div className="navbar__left">
+        <div className={classes.left}>
           <Hidden mdDown>
             <IconButton
               color="inherit"
@@ -42,7 +56,7 @@ function Navbar(props) {
             </IconButton>
           </Hidden>
         </div>
-        <div className="navbar__right">
+        <div className={classes.right}>
           <IconButton
             aria-label="show 11 new notifications"
             color="inherit"

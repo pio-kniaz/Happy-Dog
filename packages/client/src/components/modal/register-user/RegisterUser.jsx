@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import { useSnackbar } from 'notistack';
+import { makeStyles } from '@material-ui/core/styles';
 
-import './register-user.scss';
 import { CustomButton } from '@components/buttons';
 import { TextInput, SelectInput, DateInput } from '@components/inputs';
 import { registerValidationSchema } from '@components/modal/register-user/registerValidationSchema';
@@ -14,11 +14,40 @@ import { formErrorParser } from '@/utils/formErrorParser';
 import { setSnackBarOptions } from '@/utils/snackBar';
 import { SnackBarType } from '@/const/SnackBarType';
 import { closeModal } from '@/redux/modal/actions';
+// import { DisplayFormikState } from '@/helpers/DisplayFormikState';
 
 const genderOptions = [
   { value: 'male', label: 'Male' },
   { value: 'female', label: 'Female' },
 ];
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.up('sm')]: {
+      width: '415px',
+    },
+  },
+  form: {
+    paddingBottom: '1rem',
+  },
+  input: {
+    paddingTop: '.25rem',
+    paddingBottom: '.25rem',
+  },
+  gutter: {
+    [theme.breakpoints.up('sm')]: {
+      '&:first-of-type': {
+        paddingRight: '0.6rem',
+      },
+      '&:last-of-type': {
+        paddingRight: '0.6rem',
+      },
+    },
+  },
+  buttons: {
+    marginTop: '1.5rem',
+  },
+}));
 
 const formInitialValues = {
   firstName: 'Janusz',
@@ -26,13 +55,15 @@ const formInitialValues = {
   email: 'gosia1112@onet.eu',
   password: '123Sd$!@%?',
   passwordConfirmation: '123Sd$!@%?',
-  birthday: '2020-12-08',
-  gender: 'male',
+  birthday: null,
+  gender: '',
   terms: true,
 };
 
 function RegisterUser(props) {
   const { className } = props;
+
+  const classes = useStyles();
 
   const dispatch = useDispatch();
 
@@ -55,7 +86,9 @@ function RegisterUser(props) {
 
   const isButtonDisabled = isLoading || isSuccess;
 
-  const registerUserModalClassName = clsx(`register-user ${className}`);
+  const registerUserModalClassName = clsx(`${classes.root} ${className}`);
+  const inputWithGutterClassName = clsx(`${classes.input} ${classes.gutter}`);
+
   return (
     <>
       <div className={registerUserModalClassName}>
@@ -65,119 +98,122 @@ function RegisterUser(props) {
           onSubmit={handleSubmit}
         >
           {() => (
-            <Form className="register-user__form">
-              <Grid
-                container
-                justify="space-between"
-              >
+            <>
+              <Form className={classes.form}>
                 <Grid
-                  className="register-user__input register-user__input--gutter"
+                  container
+                  justify="space-between"
+                >
+                  <Grid
+                    className={inputWithGutterClassName}
+                    item
+                    xs={12}
+                    md={6}
+                  >
+                    <TextInput
+                      fullWidth
+                      type="text"
+                      name="firstName"
+                      label="First Name"
+                    />
+                  </Grid>
+                  <Grid
+                    className={inputWithGutterClassName}
+                    item
+                    xs={12}
+                    md={6}
+                  >
+                    <TextInput
+                      fullWidth
+                      type="text"
+                      name="lastName"
+                      label="Last Name"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  justify="space-between"
+                >
+                  <Grid
+                    className={inputWithGutterClassName}
+                    item
+                    xs={12}
+                    md={6}
+                  >
+                    <DateInput
+                      name="birthday"
+                      label="Birthday"
+                    />
+                  </Grid>
+                  <Grid
+                    className={inputWithGutterClassName}
+                    item
+                    xs={12}
+                    md={6}
+                  >
+                    <SelectInput
+                      fullWidth
+                      name="gender"
+                      label="Gender"
+                      options={genderOptions}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  className={classes.input}
                   item
                   xs={12}
-                  md={6}
                 >
                   <TextInput
                     fullWidth
                     type="text"
-                    name="firstName"
-                    label="First Name"
+                    name="email"
+                    label="Email"
                   />
                 </Grid>
                 <Grid
-                  className="register-user__input register-user__input--gutter"
+                  className={classes.input}
                   item
                   xs={12}
-                  md={6}
                 >
                   <TextInput
                     fullWidth
-                    type="text"
-                    name="lastName"
-                    label="Last Name"
-                  />
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                justify="space-between"
-              >
-                <Grid
-                  className="register-user__input register-user__input--gutter"
-                  item
-                  xs={12}
-                  md={6}
-                >
-                  <DateInput
-                    name="birthday"
-                    label="Birthday"
+                    type="password"
+                    name="password"
+                    label="Password"
                   />
                 </Grid>
                 <Grid
-                  className="register-user__input register-user__input--gutter"
+                  className={classes.input}
                   item
                   xs={12}
-                  md={6}
                 >
-                  <SelectInput
+                  <TextInput
                     fullWidth
-                    name="gender"
-                    label="Gender"
-                    options={genderOptions}
+                    type="password"
+                    name="passwordConfirmation"
+                    label="Password Confirmation"
                   />
                 </Grid>
-              </Grid>
-              <Grid
-                className="register-user__input"
-                item
-                xs={12}
-              >
-                <TextInput
-                  fullWidth
-                  type="text"
-                  name="email"
-                  label="Email"
-                />
-              </Grid>
-              <Grid
-                className="register-user__input"
-                item
-                xs={12}
-              >
-                <TextInput
-                  fullWidth
-                  type="password"
-                  name="password"
-                  label="Password"
-                />
-              </Grid>
-              <Grid
-                className="register-user__input"
-                item
-                xs={12}
-              >
-                <TextInput
-                  fullWidth
-                  type="password"
-                  name="passwordConfirmation"
-                  label="Password Confirmation"
-                />
-              </Grid>
-              <Grid
-                item
-                className="register-user__buttons"
-                xs={12}
-              >
-                <CustomButton
-                  fullWidth
-                  disabled={isButtonDisabled}
-                  color="primary"
-                  type="submit"
+                <Grid
+                  item
+                  className={classes.buttons}
+                  xs={12}
                 >
-                  Zarejestruj
-                </CustomButton>
-              </Grid>
-            </Form>
-          ) }
+                  <CustomButton
+                    fullWidth
+                    disabled={isButtonDisabled}
+                    color="primary"
+                    type="submit"
+                  >
+                    Zarejestruj
+                  </CustomButton>
+                </Grid>
+              </Form>
+              {/* <DisplayFormikState {...formikProps} /> */}
+            </>
+          )}
         </Formik>
       </div>
     </>

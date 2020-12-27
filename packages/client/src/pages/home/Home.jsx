@@ -1,24 +1,70 @@
-import '@/pages/home/home.scss';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
 import Login from '@/pages/home/login/Login';
 import { Footer } from '@components';
+import { colors } from '@/theme/colors';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: colors.blueGrey[50],
+    minHeight: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: '2rem',
+  },
+  content: {
+    paddingTop: '3rem',
+    paddingBottom: '2rem',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '650px',
+    },
+  },
+  header: {
+    width: '100%',
+    maxWidth: '630px',
+    marginBottom: '1rem',
+    paddingRight: '2.25rem',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+      paddingRight: '0px',
+    },
+  },
+  headerTitle: {
+    fontFamily: 'Kalam',
+  },
+  login: {
+    marginTop: '2rem',
+    maxWidth: '430px',
+    boxShadow: `0 2px 4px ${colors.grey[400]}`,
+    backgroundColor: colors.blueGrey[50],
+    borderRadius: '5px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+    },
+  },
+}));
 
 function Home() {
+  const classes = useStyles();
+
   return (
     <Box
       component="div"
-      className="home"
+      className={classes.root}
     >
       <Container
         maxWidth="lg"
-        className="home__top"
+        className={classes.content}
       >
         <Grid
           container
-          spacing={2}
           alignItems="center"
           justify="center"
         >
@@ -26,9 +72,10 @@ function Home() {
             item
             sm={12}
             md={6}
-            className="home__item home__header"
+            className={classes.header}
           >
             <Typography
+              className={classes.headerTitle}
               variant="h1"
               align="left"
               display="block"
@@ -52,7 +99,7 @@ function Home() {
             item
             sm={12}
             md={6}
-            className="home__item home__login"
+            className={classes.login}
           >
             <Login />
           </Grid>
