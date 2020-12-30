@@ -2,10 +2,13 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:testing-library/react',
+    'plugin:jest-dom/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,6 +20,8 @@ module.exports = {
   plugins: [
     'react',
     'react-hooks',
+    'testing-library',
+    'jest-dom',
   ],
   rules: {
     'react/jsx-indent': [2],

@@ -45,7 +45,7 @@ function MainLayout(props) {
   const handleSidebarClose = useCallback(() => setSidebarOpen(false), []);
 
   return (
-    <main className={classes.root}>
+    <div className={classes.root}>
       <Navbar onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}
@@ -56,7 +56,7 @@ function MainLayout(props) {
         {children}
       </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
