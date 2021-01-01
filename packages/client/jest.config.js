@@ -2,7 +2,6 @@ module.exports = {
   setupFilesAfterEnv: [
     '<rootDir>/src/test-config/setUpTests.js',
     '<rootDir>/src/test-config/matchMedia.js',
-    '<rootDir>/src/test-config/locationChange.js',
   ],
   moduleNameMapper: {
     // '^@[/](.+)': '<rootDir>/src/$1',
