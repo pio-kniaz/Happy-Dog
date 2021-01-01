@@ -82,7 +82,10 @@ function Login() {
   const isButtonDisabled = isLoading || isSuccess;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      data-testid="login"
+    >
       <Grid
         container
       >
