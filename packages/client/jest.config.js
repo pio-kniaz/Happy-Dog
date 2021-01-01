@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     // '^@[/](.+)': '<rootDir>/src/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@api(.*)$': '<rootDir>/src/api/$1',
     '^@components(.*)$': '<rootDir>/src/components/$1',
     '^@queries(.*)$': '<rootDir>/src/queries/$1',
   },

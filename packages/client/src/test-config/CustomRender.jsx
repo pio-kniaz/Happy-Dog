@@ -2,6 +2,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { render } from '@testing-library/react';
 import { SnackbarProvider } from 'notistack';
+import { Provider } from 'react-redux';
+
+import { store } from '@/redux/store';
 import Theme from '@/theme/Theme';
 import QueryProvider from '@/QueryProvider';
 import {
@@ -9,19 +12,22 @@ import {
 } from 'react-router-dom';
 
 const AllTheProviders = ({ children }) => (
-  <QueryProvider>
-    <Theme>
-      <SnackbarProvider anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      >
-        <Router>
-          {children}
-        </Router>
-      </SnackbarProvider>
-    </Theme>
-  </QueryProvider>
+  <Provider store={store}>
+    <QueryProvider>
+      <Theme>
+        <SnackbarProvider anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        >
+          <Router>
+            {children}
+          </Router>
+        </SnackbarProvider>
+      </Theme>
+    </QueryProvider>
+  </Provider>
+
 );
 
 const CustomRender = (ui, options) => render(ui, { wrapper: AllTheProviders, ...options });
