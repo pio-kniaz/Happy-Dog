@@ -83,6 +83,7 @@ function RegisterUser(props) {
       dispatch(closeModal());
     } catch (error) {
       const formError = formErrorParser(error.response.data.message.errors);
+      console.log(formError, 'formError');
       setErrors(formError);
     }
   };
