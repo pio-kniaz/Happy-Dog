@@ -1,4 +1,4 @@
-import { render, screen } from '../../test-config/CustomRender';
+import { render, screen } from '@test-utils/CustomRender';
 import Home from './Home';
 
 describe('Testing Home', () => {

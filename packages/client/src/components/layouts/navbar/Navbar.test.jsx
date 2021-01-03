@@ -1,5 +1,5 @@
-import { render, screen } from '@/test-config/CustomRender';
-import { resizeTo, bp } from '@/test-config/matchMedia';
+import { render, screen } from '@test-utils/CustomRender';
+import { resizeTo, bp } from '@test-utils/matchMedia';
 import Navbar from './Navbar';
 
 test('Render Navbar', () => {

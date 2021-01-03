@@ -40,6 +40,8 @@ const config = {
       '@components': `${SRC_PATH}/components`,
       '@hooks': `${SRC_PATH}/hooks`,
       '@queries': `${SRC_PATH}/queries`,
+      '@config': `${SRC_PATH}/config`,
+      '@test-utils': `${SRC_PATH}/test-utils`,
     },
     extensions: ['.jsx', '.js', '.json'],
     modules: ['node_modules'],

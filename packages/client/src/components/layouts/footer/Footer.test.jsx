@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@test-utils/CustomRender';
 import Footer from './Footer';
 
 test('Render Footer', () => {

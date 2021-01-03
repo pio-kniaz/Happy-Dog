@@ -1,7 +1,7 @@
 import { ValidationMessages } from '@/utils/validation';
 import {
   render, screen, fireEvent,
-} from '../../../test-config/CustomRender';
+} from '@test-utils/CustomRender';
 import Login from './Login';
 
 describe('Test Login', () => {
