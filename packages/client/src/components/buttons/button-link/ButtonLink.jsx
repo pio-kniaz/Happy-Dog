@@ -2,8 +2,9 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { colors } from '@/theme/colors';
+import clsx from 'clsx';
 
+import { colors } from '@/theme/colors';
 import { CustomButton } from '@components';
 
 const useStyles = makeStyles({
@@ -25,9 +26,11 @@ function ButtonLink(props) {
 
   const classes = useStyles();
 
+  const buttonLinkClassName = clsx(classes.root, className);
+
   return (
     <CustomButton
-      className={classes.root}
+      className={buttonLinkClassName}
       {...restProps}
       to={to}
       component={Link}

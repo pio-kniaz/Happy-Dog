@@ -27,7 +27,10 @@ const useStyles = makeStyles({
   form: {
     width: '100%',
     marginTop: '1rem',
-    marginBottom: '1rem',
+    marginBottom: '0.25rem',
+  },
+  resetPassword: {
+    marginBottom: '0.75rem',
   },
   input: {
     marginTop: '1rem',
@@ -104,6 +107,16 @@ function Login() {
           item
           xs={12}
         >
+          <ButtonLink
+            className={classes.resetPassword}
+            disabled={isButtonDisabled}
+            fullWidth
+            to="/password-reset"
+            disableFocusRipple
+            disableRipple
+          >
+            Nie pamietasz hasła?
+          </ButtonLink>
           <CustomButton
             disabled={isButtonDisabled}
             fullWidth
@@ -125,7 +138,10 @@ function LoginForm(props) {
   const classes = useStyles();
 
   return (
-    <Form className={classes.form}>
+    <Form
+      className={classes.form}
+      data-testid="login-form"
+    >
       <Grid
         className={classes.input}
         item
@@ -163,16 +179,6 @@ function LoginForm(props) {
           >
             Zaloguj
           </CustomButton>
-          <ButtonLink
-            className=""
-            disabled={isButtonDisabled}
-            fullWidth
-            to="/password-reset"
-            disableFocusRipple
-            disableRipple
-          >
-            Nie pamietasz hasła?
-          </ButtonLink>
         </Grid>
       </Grid>
     </Form>
