@@ -15,6 +15,7 @@ test(`Render Logo button with href above ${bp.lg}`, () => {
   const onSidebarOpen = jest.fn();
 
   render(<Navbar onSidebarOpen={onSidebarOpen} />);
+
   const logo = screen.getByRole('button', { name: /Redirect to main page/ });
   expect(logo).toHaveAttribute('href', '/');
 });

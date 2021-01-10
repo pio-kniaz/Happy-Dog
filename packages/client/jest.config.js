@@ -4,7 +4,6 @@ module.exports = {
     '<rootDir>/src/test-utils/matchMedia.js',
   ],
   moduleNameMapper: {
-    // '^@[/](.+)': '<rootDir>/src/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@api(.*)$': '<rootDir>/src/api/$1',
     '^@components(.*)$': '<rootDir>/src/components/$1',

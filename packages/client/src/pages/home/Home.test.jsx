@@ -4,10 +4,14 @@ import Home from './Home';
 describe('Testing Home', () => {
   it('Should render title on home page', () => {
     render(<Home />);
-    expect(screen.getByRole('heading', { name: /Happy Dog/i })).toHaveTextContent('Happy Dog');
+
+    const homeTitle = screen.getByRole('heading', { name: /Happy Dog/i });
+    expect(homeTitle).toHaveTextContent('Happy Dog');
   });
   it('Should render Login on home page', () => {
     render(<Home />);
-    expect(screen.getByTestId('login')).toBeInTheDocument();
+
+    const login = screen.getByTestId('login');
+    expect(login).toBeInTheDocument();
   });
 });

@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
-import { useHistory } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useSignIn } from '@queries/sign-in/useSignIn';
@@ -52,24 +49,7 @@ function Login() {
 
   const classes = useStyles();
 
-  const { closeSnackbar } = useSnackbar();
-
-  const history = useHistory();
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isSuccess) {
-      const timeout = setTimeout(() => {
-        history.push('/dashboard');
-      }, 1500);
-      return () => {
-        clearTimeout(timeout);
-        closeSnackbar();
-      };
-    }
-    return () => null;
-  }, [closeSnackbar, history, isSuccess]);
 
   const handleSubmit = (values) => {
     signIn({ values });

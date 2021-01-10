@@ -3,26 +3,28 @@ import { useSnackbar } from 'notistack';
 
 import { api } from '@api';
 import AuthService from '@/services/AuthService';
-
 import { setSnackBarOptions } from '@/utils/snackBar';
 import { SnackBarType } from '@/const/SnackBarType';
 
 const signInRequest = async (payload) => {
   const { values } = payload;
-  const { data } = await api.post('auth/login', values);
+  const { data } = await api.post('http://localhost:8081/api/auth/login', values);
   return data;
 };
 
 export const useSignIn = () => {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   return useMutation(signInRequest, {
     onSuccess: ({ data }) => {
-      enqueueSnackbar('Success', setSnackBarOptions({
+      enqueueSnackbar(`Welcome ${data.firstName}`, setSnackBarOptions({
         variant: SnackBarType.success,
       }));
       AuthService.signUser(data.accessToken);
-      window.location.reload();
+      setTimeout(() => {
+        closeSnackbar();
+        window.location.reload();
+      }, 2000);
     },
     onError: (err) => {
       enqueueSnackbar(err.response.data.message, setSnackBarOptions({
