@@ -1,12 +1,31 @@
 import mockAxios from 'axios';
-import successResponse from '@/__mocks__/sign-in/successResponse.json';
-import errorResponse from '@/__mocks__/sign-in/errorResponse.json';
 
-import { ValidationMessages } from '@/utils/validation';
 import {
   render, screen, fireEvent, waitFor,
 } from '@test-utils/CustomRender';
+import { ValidationMessages } from '@/utils/validation';
+import errorResponse from '@/__mocks__/sign-in/errorResponse.json';
+import successResponse from '@/__mocks__/sign-in/successResponse.json';
+import { ModalType } from '@components/modal/ModalType';
 import Login from './Login';
+
+const mockDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}));
+
+const openModalParams = {
+  modalType: ModalType.registerUser,
+  params: {
+    title: 'Register User',
+  },
+};
+
+const mockOpenModal = jest.fn(() => openModalParams);
+jest.mock('@/redux/modal/actions', () => ({
+  openModal: (data) => mockOpenModal(data),
+}));
 
 describe('Test Login', () => {
   it('Should render Login with all elements on page', async () => {
@@ -77,9 +96,6 @@ describe('Test Login', () => {
     await waitFor(() => expect(submitButton).toBeDisabled());
     expect(forgotPasswordButton).toHaveClass('Mui-disabled');
     expect(createNewButton).toBeDisabled();
-    const successToast = screen.getByRole('alert');
-    expect(successToast).toBeInTheDocument();
-    expect(successToast).toHaveTextContent('Welcome Janusz');
   });
 
   it('Handles a failure login flow', async () => {
@@ -105,10 +121,6 @@ describe('Test Login', () => {
       expect(createNewButton).toBeDisabled();
     });
 
-    const errorToast = screen.getByRole('alert');
-
-    expect(errorToast).toBeInTheDocument();
-    expect(errorToast).toHaveTextContent('User not found');
     expect(submitButton).toBeEnabled();
     expect(forgotPasswordButton).not.toHaveClass('Mui-disabled');
     expect(createNewButton).toBeEnabled();
@@ -121,4 +133,12 @@ describe('Test Login', () => {
     expect(forgotPassword).toBeEnabled();
     expect(forgotPassword).toHaveAttribute('href', '/password-reset');
   });
+});
+
+it('Should fire openModal after button click', () => {
+  render(<Login />);
+  const createNewButton = screen.getByRole('button', { name: /utwórz nowe/i });
+  expect(createNewButton).toBeInTheDocument();
+  fireEvent.click(createNewButton);
+  expect(mockOpenModal).toHaveBeenNthCalledWith(1, mockOpenModal());
 });
