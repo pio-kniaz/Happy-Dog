@@ -9,23 +9,19 @@ import successResponse from '@/__mocks__/sign-in/successResponse.json';
 import { ModalType } from '@components/modal/ModalType';
 import Login from './Login';
 
-const mockDispatch = jest.fn();
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useDispatch: () => mockDispatch,
-}));
-
-const openModalParams = {
-  modalType: ModalType.registerUser,
-  params: {
-    title: 'Register User',
-  },
-};
-
-const mockOpenModal = jest.fn(() => openModalParams);
+const mockOpenModal = jest.fn();
 jest.mock('@/redux/modal/actions', () => ({
   openModal: (data) => mockOpenModal(data),
 }));
+
+// const mockHistoryPush = jest.fn();
+
+// jest.mock('react-router-dom', () => ({
+//   ...jest.requireActual('react-router-dom'),
+//   useHistory: () => ({
+//     push: mockHistoryPush,
+//   }),
+// }));
 
 describe('Test Login', () => {
   it('Should render Login with all elements on page', async () => {
@@ -140,5 +136,10 @@ it('Should fire openModal after button click', () => {
   const createNewButton = screen.getByRole('button', { name: /utwórz nowe/i });
   expect(createNewButton).toBeInTheDocument();
   fireEvent.click(createNewButton);
-  expect(mockOpenModal).toHaveBeenNthCalledWith(1, mockOpenModal());
+  expect(mockOpenModal).toHaveBeenNthCalledWith(1, {
+    modalType: ModalType.registerUser,
+    params: {
+      title: 'Register User',
+    },
+  });
 });
