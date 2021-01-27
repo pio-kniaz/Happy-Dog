@@ -56,7 +56,7 @@ const formInitialValues = {
   email: '',
   password: '',
   passwordConfirmation: '',
-  birthday: '2021-01-29',
+  birthday: '',
   gender: '',
   terms: true,
 };

@@ -80,7 +80,7 @@ function DateInput(props) {
           }}
           InputLabelProps={{
             'aria-label': label,
-            shrink: !!(meta.touched && typeof field.value === 'string'),
+            shrink: !!meta.touched || (typeof field.value === 'string' && field.value.length > 0),
           }}
           {...restProps}
         />
