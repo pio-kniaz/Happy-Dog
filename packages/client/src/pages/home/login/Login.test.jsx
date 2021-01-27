@@ -4,8 +4,8 @@ import {
   render, screen, fireEvent, waitFor,
 } from '@test-utils/CustomRender';
 import { ValidationMessages } from '@/utils/validation';
-import errorResponse from '@/__mocks__/sign-in/errorResponse.json';
-import successResponse from '@/__mocks__/sign-in/successResponse.json';
+import errorResponse from '@/__mocks__/rest/sign-in/useSignIn/errorResponse.json';
+import successResponse from '@/__mocks__/rest/sign-in/useSignIn/successResponse.json';
 import { ModalType } from '@components/modal/ModalType';
 import Login from './Login';
 
@@ -24,7 +24,7 @@ jest.mock('@/redux/modal/actions', () => ({
 // }));
 
 describe('Test Login', () => {
-  it('Should render Login with all elements on page', async () => {
+  it('Should render Login with form inputs and buttons', () => {
     render(<Login />);
 
     const login = screen.getByTestId('login');
@@ -42,6 +42,16 @@ describe('Test Login', () => {
     expect(submitButton).toBeInTheDocument();
     expect(createNewButton).toBeInTheDocument();
     expect(forgotPassword).toBeInTheDocument();
+  });
+
+  it('Should render login form with correct initial values', async () => {
+    render(<Login />);
+    const loginForm = screen.getByTestId('login-form');
+
+    expect(loginForm).toHaveFormValues({
+      email: '',
+      password: '',
+    });
   });
 
   it('Should render email input with correct attributes', async () => {

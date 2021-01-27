@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useMemo, useCallback, useRef } from 'react';
+import { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -9,6 +9,7 @@ import { useField } from 'formik';
 import { colors } from '@/theme/colors';
 
 import CustomValueContainer from './CustomValueContainer';
+import CustomSingleValue from './CustomSingleValue';
 
 const useStyles = makeStyles({
   input: {
@@ -81,8 +82,6 @@ function SelectInput(props) {
     options, floatingLabel, isSearchable, className, label, ...restProps
   } = props;
 
-  const ref = useRef(null);
-
   const [field, meta, helpers] = useField(restProps);
   const error = meta.error && meta.touched ? meta.error : '';
 
@@ -106,13 +105,15 @@ function SelectInput(props) {
       error={!!error}
     >
       <Select
+        inputId={`input-${field.name}`}
         className={selectFieldInputClassName}
         placeholder={label}
+        aria-label={label}
         options={options}
         isSearchable={isSearchable}
         isError={!!error}
-        ref={ref}
         components={{
+          SingleValue: CustomSingleValue,
           IndicatorSeparator: () => null,
           Placeholder: () => null,
           ValueContainer: floatingLabel
@@ -125,6 +126,7 @@ function SelectInput(props) {
         onChange={handleChange}
         onBlur={handleTouch}
         styles={selectCustomStyles}
+        inputValue="male"
       />
       <FormHelperText>
         {error}
