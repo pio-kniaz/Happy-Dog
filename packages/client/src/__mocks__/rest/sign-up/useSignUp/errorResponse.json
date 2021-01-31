@@ -1,0 +1,14 @@
+{
+  "response": {
+    "data": {
+      "success": false,
+      "message": {
+        "errors": {
+          "email": {
+            "message": "Expected email to be unique."
+          }
+        }
+      }
+    }
+  }
+}

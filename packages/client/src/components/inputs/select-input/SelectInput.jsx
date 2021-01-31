@@ -126,7 +126,6 @@ function SelectInput(props) {
         onChange={handleChange}
         onBlur={handleTouch}
         styles={selectCustomStyles}
-        inputValue="male"
       />
       <FormHelperText>
         {error}

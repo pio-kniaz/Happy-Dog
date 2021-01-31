@@ -8,6 +8,7 @@ import {
   waitFor,
 } from '@test-utils/CustomRender';
 import successResponse from '@/__mocks__/rest/sign-up/useSignUp/successResponse.json';
+import errorResponse from '@/__mocks__/rest/sign-up/useSignUp/errorResponse.json';
 
 import RegisterUser from './RegisterUser';
 
@@ -146,6 +147,45 @@ describe('Test RegisterUser', () => {
 
     fireEvent.click(registerButton);
     await waitFor(() => expect(registerButton).toBeDisabled());
-    expect(registerButton).toHaveClass('Mui-disabled');
+  });
+
+  it('Handles a failure register flow', async () => {
+    render(<RegisterUser />);
+    mockAxios.post.mockImplementationOnce(() => Promise.reject(errorResponse));
+
+    const firstNameInput = screen.getByRole('textbox', { name: /input.label.firstName/i });
+    const lastNameInput = screen.getByRole('textbox', { name: /input.label.lastName/i });
+    const birthdayInput = screen.getByRole('textbox', { name: /input.label.birthday/i });
+    const genderInput = screen.getByRole('textbox', { name: /input.label.gender/i });
+    const emailInput = screen.getByRole('textbox', { name: /input.label.email/i });
+    const passwordInput = screen.getByLabelText('input.label.password');
+    const passwordConfirmationInput = screen.getByLabelText('input.label.passwordConfirmation');
+    const registerButton = screen.getByRole('button', { name: /zarejestruj/i });
+
+    fireEvent.blur(firstNameInput);
+    fireEvent.change(firstNameInput, { target: { value: 'janusz' } });
+
+    fireEvent.blur(lastNameInput);
+    fireEvent.change(lastNameInput, { target: { value: 'kowalski' } });
+
+    fireEvent.click(birthdayInput);
+    const okButton = await screen.findByText('OK');
+    fireEvent.click(okButton);
+
+    await selectEvent.select(genderInput, ['Male', 'Female']);
+    await selectEvent.select(genderInput, 'Male');
+
+    fireEvent.blur(emailInput);
+    fireEvent.change(emailInput, { target: { value: 'gosia112@op.pl' } });
+
+    fireEvent.blur(passwordInput);
+    fireEvent.change(passwordInput, { target: { value: 'Jajo123?' } });
+
+    fireEvent.blur(passwordConfirmationInput);
+    fireEvent.change(passwordConfirmationInput, { target: { value: 'Jajo123?' } });
+
+    fireEvent.click(registerButton);
+    await waitFor(() => expect(registerButton).toBeDisabled());
+    await waitFor(() => expect(screen.getByText('Expected email to be unique.')).toBeInTheDocument());
   });
 });
