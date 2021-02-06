@@ -9,4 +9,7 @@ const signUpRequest = async (payload) => {
   return data;
 };
 
-export const useSignUp = () => useMutation(signUpRequest);
+export const useSignUp = () => {
+  const { mutateAsync: signUpMutation, isSuccess, isLoading } = useMutation(signUpRequest);
+  return { signUpMutation, isSuccess, isLoading };
+};

@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 });
 
 function Login() {
-  const { mutate: signIn, isSuccess, isLoading } = useSignIn();
+  const { signIn, isSuccess, isLoading } = useSignIn();
 
   const classes = useStyles();
 

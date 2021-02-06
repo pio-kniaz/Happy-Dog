@@ -70,7 +70,7 @@ function RegisterUser(props) {
 
   const { t } = useTranslation();
 
-  const { mutateAsync: signUpMutation, isSuccess, isLoading } = useSignUp();
+  const { signUpMutation, isSuccess, isLoading } = useSignUp();
 
   const { enqueueSnackbar } = useSnackbar();
 

@@ -102,6 +102,10 @@ describe('Test Login', () => {
     await waitFor(() => expect(submitButton).toBeDisabled());
     expect(forgotPasswordButton).toHaveClass('Mui-disabled');
     expect(createNewButton).toBeDisabled();
+
+    const successToast = screen.getByRole('alert');
+    expect(successToast).toBeInTheDocument();
+    expect(successToast).toHaveTextContent('Welcome Janusz');
   });
 
   it('Handles a failure login flow', async () => {
@@ -130,6 +134,10 @@ describe('Test Login', () => {
     expect(submitButton).toBeEnabled();
     expect(forgotPasswordButton).not.toHaveClass('Mui-disabled');
     expect(createNewButton).toBeEnabled();
+
+    const successToast = screen.getByRole('alert');
+    expect(successToast).toBeInTheDocument();
+    expect(successToast).toHaveTextContent('User not found');
   });
 
   it('Should render forgotPassword button with correct attributes', () => {

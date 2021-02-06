@@ -14,8 +14,7 @@ const signInRequest = async (payload) => {
 
 export const useSignIn = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-  return useMutation(signInRequest, {
+  const { mutate: signIn, isSuccess, isLoading } = useMutation(signInRequest, {
     onSuccess: ({ data }) => {
       enqueueSnackbar(`Welcome ${data.firstName}`, setSnackBarOptions({
         variant: SnackBarType.success,
@@ -32,4 +31,6 @@ export const useSignIn = () => {
       }));
     },
   });
+
+  return { signIn, isSuccess, isLoading };
 };
