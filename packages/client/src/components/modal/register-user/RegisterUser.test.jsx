@@ -1,16 +1,20 @@
 import mockAxios from 'axios';
 import selectEvent from 'react-select-event';
-
 import {
   render,
   screen,
   fireEvent,
   waitFor,
 } from '@test-utils/CustomRender';
+
 import successResponse from '@/__mocks__/rest/sign-up/useSignUp/successResponse.json';
 import errorResponse from '@/__mocks__/rest/sign-up/useSignUp/errorResponse.json';
-
 import RegisterUser from './RegisterUser';
+
+const mockCloseModal = jest.fn();
+jest.mock('@/redux/modal/actions', () => ({
+  closeModal: (data) => mockCloseModal(data),
+}));
 
 describe('Test RegisterUser', () => {
   it('Should render RegisterUser with form inputs and button', () => {
@@ -147,6 +151,12 @@ describe('Test RegisterUser', () => {
 
     fireEvent.click(registerButton);
     await waitFor(() => expect(registerButton).toBeDisabled());
+    const successToast = screen.getByRole('alert');
+    expect(successToast).toBeInTheDocument();
+    expect(successToast).toHaveTextContent('Success');
+    await waitFor(() => {
+      expect(mockCloseModal).toHaveBeenCalled();
+    });
   });
 
   it('Handles a failure register flow', async () => {
