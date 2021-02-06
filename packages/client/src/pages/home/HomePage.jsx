@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
+function HomePage() {
   const classes = useStyles();
 
   return (
@@ -103,9 +103,8 @@ function Home() {
           </Grid>
         </Grid>
       </Container>
-      {/* <Footer /> */}
     </Box>
   );
 }
 
-export default Home;
+export default HomePage;
