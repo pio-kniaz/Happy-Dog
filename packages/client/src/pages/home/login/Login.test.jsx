@@ -7,6 +7,7 @@ import { ValidationMessages } from '@/utils/validation';
 import errorResponse from '@/__mocks__/rest/sign-in/useSignIn/errorResponse.json';
 import successResponse from '@/__mocks__/rest/sign-in/useSignIn/successResponse.json';
 import { ModalType } from '@components/modal/ModalType';
+import AuthService from '@/services/AuthService';
 import Login from './Login';
 
 const mockOpenModal = jest.fn();
@@ -82,8 +83,9 @@ describe('Test Login', () => {
   });
 
   it('Handles a successful login flow', async () => {
+    const AuthServiceSignUserSpy = jest.spyOn(AuthService, 'signUser');
+    jest.setTimeout(10000);
     render(<Login />);
-
     mockAxios.post.mockImplementationOnce(() => Promise.resolve({ data: successResponse }));
 
     const emailInput = screen.getByRole('textbox', { name: /email/i });
@@ -106,6 +108,12 @@ describe('Test Login', () => {
     const successToast = screen.getByRole('alert');
     expect(successToast).toBeInTheDocument();
     expect(successToast).toHaveTextContent('Welcome Janusz');
+    expect(AuthServiceSignUserSpy).toHaveBeenNthCalledWith(1, successResponse.data.accessToken);
+    AuthServiceSignUserSpy.mockRestore();
+    await waitFor(() => {
+      expect(successToast).not.toBeInTheDocument();
+      expect(window.location.reload).toHaveBeenCalled();
+    });
   });
 
   it('Handles a failure login flow', async () => {

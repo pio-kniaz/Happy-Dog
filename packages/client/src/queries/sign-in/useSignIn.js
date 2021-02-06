@@ -23,7 +23,7 @@ export const useSignIn = () => {
       setTimeout(() => {
         closeSnackbar();
         window.location.reload();
-      }, 2000);
+      }, 500);
     },
     onError: (err) => {
       enqueueSnackbar(err.response.data.message, setSnackBarOptions({
