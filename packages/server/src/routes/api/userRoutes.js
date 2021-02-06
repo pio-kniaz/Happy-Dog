@@ -2,10 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const { createUser } = require('@/controllers/userController');
+const { createUser, userMe } = require('@/controllers/userController');
 const { isAuth } = require('@/utils/jwt');
 
 router.post('/register', createUser);
+router.get('/me', isAuth, userMe);
 router.get('/users', isAuth, (req, res) => res.status(200).json({
   data: [
     {

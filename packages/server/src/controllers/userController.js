@@ -1,3 +1,5 @@
+const pick = require('lodash/pick');
+
 const User = require('@/models/User');
 const ApiError = require('@/error/ApiError');
 
@@ -32,6 +34,26 @@ const createUser = async (req, res, next) => {
   }
 };
 
+// @desc Retrieve user details
+// @route GET /api/user/me
+// @access Private
+const userMe = async (req, res, next) => {
+  if (!req.userId) {
+    return next(ApiError.badRequest());
+  }
+  try {
+    const currentUser = await User.findById(req.userId);
+    return res.status(200).json({
+      data: {
+        success: true,
+        user: pick(currentUser, ['id', 'firstName', 'lastName', 'email', 'createdAt', 'updatedAt']),
+      },
+    });
+  } catch (error) {
+    return next(ApiError.badRequest());
+  }
+};
 module.exports = {
   createUser,
+  userMe,
 };
