@@ -8,8 +8,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
-import { colors } from '@/theme/colors';
+import PetsIcon from '@material-ui/icons/Pets';
 
+import { ButtonLink } from '@components';
+import { colors } from '@/theme/colors';
 import AuthService from '@/services/AuthService';
 
 const useStyles = makeStyles({
@@ -36,19 +38,25 @@ function Navbar(props) {
 
   return (
     <AppBar
+      data-testid="navbar"
       className={classes.root}
     >
       <Toolbar>
         <div className={classes.left}>
           <Hidden mdDown>
-            <IconButton
-              color="inherit"
+            <ButtonLink
+              aria-label="Redirect to main page"
+              color="primary"
+              to="/"
             >
-              Logo 🐕
-            </IconButton>
+              <IconButton>
+                <PetsIcon />
+              </IconButton>
+            </ButtonLink>
           </Hidden>
           <Hidden lgUp>
             <IconButton
+              aria-label="Toggle sidebar"
               color="inherit"
               onClick={onSidebarOpen}
             >
@@ -66,7 +74,7 @@ function Navbar(props) {
             </Badge>
           </IconButton>
           <IconButton
-            className="navbar__sign-out"
+            aria-label="Sign out"
             color="inherit"
             onClick={handleLogOut}
           >

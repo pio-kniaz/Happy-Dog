@@ -74,7 +74,7 @@ function TransitionsModal() {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <Modal
         className={classes.root}
         open={!!modalType}
@@ -99,7 +99,7 @@ function TransitionsModal() {
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
 

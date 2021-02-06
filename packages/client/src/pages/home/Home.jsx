@@ -5,12 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import Login from '@/pages/home/login/Login';
-import { Footer } from '@components';
 import { colors } from '@/theme/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: colors.blueGrey[50],
     minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -105,7 +103,7 @@ function Home() {
           </Grid>
         </Grid>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

@@ -51,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const formInitialValues = {
-  firstName: 'Janusz',
-  lastName: 'Kowalski',
-  email: 'gosia1112@onet.eu',
-  password: '123Sd$!@%?',
-  passwordConfirmation: '123Sd$!@%?',
-  birthday: null,
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+  birthday: '',
   gender: '',
   terms: true,
 };
@@ -70,7 +70,7 @@ function RegisterUser(props) {
 
   const { t } = useTranslation();
 
-  const { mutateAsync: signUpMutation, isSuccess, isLoading } = useSignUp();
+  const { signUpMutation, isSuccess, isLoading } = useSignUp();
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -93,133 +93,137 @@ function RegisterUser(props) {
   const inputWithGutterClassName = clsx(`${classes.input} ${classes.gutter}`);
 
   return (
-    <>
-      <div className={registerUserModalClassName}>
-        <Formik
-          initialValues={formInitialValues}
-          validationSchema={registerValidationSchema}
-          onSubmit={handleSubmit}
-        >
-          {() => (
-            <>
-              <Form className={classes.form}>
+    <div
+      className={registerUserModalClassName}
+    >
+      <Formik
+        initialValues={formInitialValues}
+        validationSchema={registerValidationSchema}
+        onSubmit={handleSubmit}
+      >
+        {() => (
+          <>
+            <Form
+              className={classes.form}
+              data-testid="register-user-form"
+            >
+              <Grid
+                container
+                justify="space-between"
+              >
                 <Grid
-                  container
-                  justify="space-between"
-                >
-                  <Grid
-                    className={inputWithGutterClassName}
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <TextInput
-                      fullWidth
-                      type="text"
-                      name="firstName"
-                      label={t('input.label.firstName')}
-                    />
-                  </Grid>
-                  <Grid
-                    className={inputWithGutterClassName}
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <TextInput
-                      fullWidth
-                      type="text"
-                      name="lastName"
-                      label={t('input.label.lastName')}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  container
-                  justify="space-between"
-                >
-                  <Grid
-                    className={inputWithGutterClassName}
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <DateInput
-                      name="birthday"
-                      label={t('input.label.birthday')}
-                    />
-                  </Grid>
-                  <Grid
-                    className={inputWithGutterClassName}
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <SelectInput
-                      fullWidth
-                      name="gender"
-                      label={t('input.label.gender')}
-                      options={genderOptions}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid
-                  className={classes.input}
+                  className={inputWithGutterClassName}
                   item
                   xs={12}
+                  md={6}
                 >
                   <TextInput
                     fullWidth
                     type="text"
-                    name="email"
-                    label={t('input.label.email')}
+                    name="firstName"
+                    label={t('input.label.firstName')}
                   />
                 </Grid>
                 <Grid
-                  className={classes.input}
+                  className={inputWithGutterClassName}
                   item
                   xs={12}
+                  md={6}
                 >
                   <TextInput
                     fullWidth
-                    type="password"
-                    name="password"
-                    label="Password"
+                    type="text"
+                    name="lastName"
+                    label={t('input.label.lastName')}
+                  />
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                justify="space-between"
+              >
+                <Grid
+                  className={inputWithGutterClassName}
+                  item
+                  xs={12}
+                  md={6}
+                >
+                  <DateInput
+                    name="birthday"
+                    label={t('input.label.birthday')}
                   />
                 </Grid>
                 <Grid
-                  className={classes.input}
+                  className={inputWithGutterClassName}
                   item
                   xs={12}
+                  md={6}
                 >
-                  <TextInput
+                  <SelectInput
                     fullWidth
-                    type="password"
-                    name="passwordConfirmation"
-                    label={t('input.label.passwordConfirmation')}
+                    name="gender"
+                    label={t('input.label.gender')}
+                    aria-label={t('input.label.gender')}
+                    options={genderOptions}
                   />
                 </Grid>
-                <Grid
-                  item
-                  className={classes.buttons}
-                  xs={12}
+              </Grid>
+              <Grid
+                className={classes.input}
+                item
+                xs={12}
+              >
+                <TextInput
+                  fullWidth
+                  type="text"
+                  name="email"
+                  label={t('input.label.email')}
+                />
+              </Grid>
+              <Grid
+                className={classes.input}
+                item
+                xs={12}
+              >
+                <TextInput
+                  fullWidth
+                  type="password"
+                  name="password"
+                  label={t('input.label.password')}
+                />
+              </Grid>
+              <Grid
+                className={classes.input}
+                item
+                xs={12}
+              >
+                <TextInput
+                  fullWidth
+                  type="password"
+                  name="passwordConfirmation"
+                  label={t('input.label.passwordConfirmation')}
+                />
+              </Grid>
+              <Grid
+                item
+                className={classes.buttons}
+                xs={12}
+              >
+                <CustomButton
+                  fullWidth
+                  disabled={isButtonDisabled}
+                  color="primary"
+                  type="submit"
                 >
-                  <CustomButton
-                    fullWidth
-                    disabled={isButtonDisabled}
-                    color="primary"
-                    type="submit"
-                  >
-                    Zarejestruj
-                  </CustomButton>
-                </Grid>
-              </Form>
-              {/* <DisplayFormikState {...formikProps} /> */}
-            </>
-          )}
-        </Formik>
-      </div>
-    </>
+                  Zarejestruj
+                </CustomButton>
+              </Grid>
+            </Form>
+            {/* <DisplayFormikState {...formikProps} /> */}
+          </>
+        )}
+      </Formik>
+    </div>
   );
 }
 

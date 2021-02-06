@@ -58,6 +58,7 @@ function DateInput(props) {
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <FormControl fullWidth>
         <DatePicker
+          id={`input-${field.name}`}
           format="DD-MM-YYYY"
           label={label}
           error={!!errorText}
@@ -78,7 +79,8 @@ function DateInput(props) {
             ),
           }}
           InputLabelProps={{
-            shrink: !!(meta.touched && typeof field.value === 'string'),
+            'aria-label': label,
+            shrink: !!meta.touched || (typeof field.value === 'string' && field.value.length > 0),
           }}
           {...restProps}
         />

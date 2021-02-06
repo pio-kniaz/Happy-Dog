@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Formik, Form } from 'formik';
 import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
-import { useHistory } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useSignIn } from '@queries/sign-in/useSignIn';
@@ -27,7 +24,10 @@ const useStyles = makeStyles({
   form: {
     width: '100%',
     marginTop: '1rem',
-    marginBottom: '1rem',
+    marginBottom: '0.25rem',
+  },
+  resetPassword: {
+    marginBottom: '0.75rem',
   },
   input: {
     marginTop: '1rem',
@@ -45,28 +45,11 @@ const useStyles = makeStyles({
 });
 
 function Login() {
-  const { mutate: signIn, isSuccess, isLoading } = useSignIn();
+  const { signIn, isSuccess, isLoading } = useSignIn();
 
   const classes = useStyles();
 
-  const { closeSnackbar } = useSnackbar();
-
-  const history = useHistory();
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isSuccess) {
-      const timeout = setTimeout(() => {
-        history.push('/dashboard');
-      }, 1500);
-      return () => {
-        clearTimeout(timeout);
-        closeSnackbar();
-      };
-    }
-    return () => null;
-  }, [closeSnackbar, history, isSuccess]);
 
   const handleSubmit = (values) => {
     signIn({ values });
@@ -82,7 +65,10 @@ function Login() {
   const isButtonDisabled = isLoading || isSuccess;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      data-testid="login"
+    >
       <Grid
         container
       >
@@ -101,6 +87,16 @@ function Login() {
           item
           xs={12}
         >
+          <ButtonLink
+            className={classes.resetPassword}
+            disabled={isButtonDisabled}
+            fullWidth
+            to="/password-reset"
+            disableFocusRipple
+            disableRipple
+          >
+            Nie pamietasz hasła?
+          </ButtonLink>
           <CustomButton
             disabled={isButtonDisabled}
             fullWidth
@@ -122,7 +118,10 @@ function LoginForm(props) {
   const classes = useStyles();
 
   return (
-    <Form className={classes.form}>
+    <Form
+      className={classes.form}
+      data-testid="login-form"
+    >
       <Grid
         className={classes.input}
         item
@@ -160,16 +159,6 @@ function LoginForm(props) {
           >
             Zaloguj
           </CustomButton>
-          <ButtonLink
-            className=""
-            disabled={isButtonDisabled}
-            fullWidth
-            to="/password-reset"
-            disableFocusRipple
-            disableRipple
-          >
-            Nie pamietasz hasła?
-          </ButtonLink>
         </Grid>
       </Grid>
     </Form>

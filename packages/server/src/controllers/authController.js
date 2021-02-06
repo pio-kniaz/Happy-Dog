@@ -24,11 +24,11 @@ const login = async (req, res, next) => {
     return res.status(200).json({
       data: {
         success: true,
+        firstName: user.firstName,
         accessToken,
       },
     });
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 };

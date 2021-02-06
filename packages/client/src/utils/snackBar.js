@@ -1,5 +1,10 @@
 import { SnackBarType } from '@/const/SnackBarType';
 
+export const defaultOptions = {
+  autoHideDuration: 3000,
+  preventDuplicate: true,
+};
+
 export const setSnackBarOptions = (options) => {
   const { variant } = options;
 
@@ -8,8 +13,7 @@ export const setSnackBarOptions = (options) => {
   }
 
   return {
-    autoHideDuration: 3000,
-    preventDuplicate: true,
+    ...defaultOptions,
     ...options,
   };
 };

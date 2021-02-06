@@ -3,26 +3,27 @@ import { useSnackbar } from 'notistack';
 
 import { api } from '@api';
 import AuthService from '@/services/AuthService';
-
 import { setSnackBarOptions } from '@/utils/snackBar';
 import { SnackBarType } from '@/const/SnackBarType';
 
 const signInRequest = async (payload) => {
   const { values } = payload;
-  const { data } = await api.post('auth/login', values);
+  const { data } = await api.post('http://localhost:8081/api/auth/login', values);
   return data;
 };
 
 export const useSignIn = () => {
-  const { enqueueSnackbar } = useSnackbar();
-
-  return useMutation(signInRequest, {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { mutate: signIn, isSuccess, isLoading } = useMutation(signInRequest, {
     onSuccess: ({ data }) => {
-      enqueueSnackbar('Success', setSnackBarOptions({
+      enqueueSnackbar(`Welcome ${data.firstName}`, setSnackBarOptions({
         variant: SnackBarType.success,
       }));
       AuthService.signUser(data.accessToken);
-      window.location.reload();
+      setTimeout(() => {
+        closeSnackbar();
+        window.location.reload();
+      }, 500);
     },
     onError: (err) => {
       enqueueSnackbar(err.response.data.message, setSnackBarOptions({
@@ -30,4 +31,6 @@ export const useSignIn = () => {
       }));
     },
   });
+
+  return { signIn, isSuccess, isLoading };
 };

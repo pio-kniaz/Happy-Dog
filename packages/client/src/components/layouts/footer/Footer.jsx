@@ -1,9 +1,15 @@
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Typography } from '@material-ui/core';
 
-function Footer() {
+function Footer(props) {
+  const { className } = props;
+  const footerClassName = clsx(className, 'footer');
+
   return (
-    <div
-      className="footer"
+    <footer
+      className={footerClassName}
+      data-testid="footer"
     >
       <Typography
         variant="caption"
@@ -15,8 +21,16 @@ function Footer() {
         Nemo omnis ipsum commodi quidem, magnam eveniet repudiandae error veritatis illum.
         !TODO: Dodac politykie cookies cos jak spotify
       </Typography>
-    </div>
+    </footer>
   );
 }
+
+Footer.propTypes = {
+  className: PropTypes.string,
+};
+
+Footer.defaultProps = {
+  className: '',
+};
 
 export default Footer;
