@@ -1,40 +1,33 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  AppBar, Toolbar, Badge, Hidden, IconButton,
+  AppBar, Toolbar, Hidden, IconButton,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
 import PetsIcon from '@material-ui/icons/Pets';
 
+import { UserAccount } from '@components/layouts/navbar/components';
 import { ButtonLink } from '@components';
 import { colors } from '@/theme/colors';
-import AuthService from '@/services/AuthService';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: colors.mountainMeadow[600],
+  },
+  grow: {
+    flexGrow: 1,
   },
   left: {},
   right: {
     flexGrow: '1',
     textAlign: 'right',
   },
-});
+}));
 
 function Navbar(props) {
   const { onSidebarOpen } = props;
 
   const classes = useStyles();
-
-  const [notifications] = useState([]);
-  const handleLogOut = () => {
-    AuthService.signOut();
-    window.location = '/';
-  };
 
   return (
     <AppBar
@@ -64,22 +57,9 @@ function Navbar(props) {
             </IconButton>
           </Hidden>
         </div>
+        <div className={classes.grow} />
         <div className={classes.right}>
-          <IconButton
-            aria-label="show 11 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={notifications.length + 1}>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            aria-label="Sign out"
-            color="inherit"
-            onClick={handleLogOut}
-          >
-            <InputIcon />
-          </IconButton>
+          <UserAccount />
         </div>
       </Toolbar>
     </AppBar>
