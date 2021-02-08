@@ -16,7 +16,7 @@ import { colors } from '@/theme/colors';
 const useStyles = makeStyles((theme) => ({
   root: {},
   paper: {
-    marginTop: '65px',
+    marginTop: '75px',
     backgroundColor: colors.blueGrey[50],
     width: '220px',
     height: '100%',
