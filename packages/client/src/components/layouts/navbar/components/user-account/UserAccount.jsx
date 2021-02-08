@@ -22,6 +22,16 @@ const useStyles = makeStyles(() => ({
   menuItem: {
     minHeight: '40px',
   },
+  accountButton: {
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+  fullName: {
+    fontSize: '1rem',
+    paddingRight: '0.35rem',
+  },
 }));
 
 function UserAccount() {
@@ -45,13 +55,19 @@ function UserAccount() {
 
   return (
     <div className={classes.root}>
-      <p> Janusz Kowalski</p>
       <IconButton
+        className={classes.accountButton}
         aria-haspopup="true"
         color="inherit"
         onClick={handleMenu}
+        disableFocusRipple
         disableRipple
       >
+        <p className={classes.fullName}>
+          <strong>
+            Janusz Kowalski
+          </strong>
+        </p>
         <AccountCircle />
       </IconButton>
       <Menu
