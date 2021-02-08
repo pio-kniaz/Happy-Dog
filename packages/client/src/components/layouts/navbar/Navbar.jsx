@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PetsIcon from '@material-ui/icons/Pets';
 
 import { UserAccount } from '@components/layouts/navbar/components';
-import { ButtonLink } from '@components';
+import ButtonLink from '@components/buttons/button-link/ButtonLink';
 import { colors } from '@/theme/colors';
 
 const useStyles = makeStyles(() => ({
