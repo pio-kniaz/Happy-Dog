@@ -84,7 +84,6 @@ describe('Test Login', () => {
 
   it('Handles a successful login flow', async () => {
     const AuthServiceSignUserSpy = jest.spyOn(AuthService, 'signUser');
-    jest.setTimeout(10000);
     render(<Login />);
     mockAxios.post.mockImplementationOnce(() => Promise.resolve({ data: successResponse }));
 
