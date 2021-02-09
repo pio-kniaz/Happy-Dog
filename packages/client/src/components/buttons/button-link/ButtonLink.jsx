@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
 import { colors } from '@/theme/colors';
-import { CustomButton } from '@components';
+import CustomButton from '@components/buttons/custom-button/CustomButton';
 
 const useStyles = makeStyles({
   root: {
