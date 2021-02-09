@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 
-import { Modal } from '@components';
+import { Modal, Loader } from '@components';
 import AuthService from '@/services/AuthService';
 import AuthenticatedRoutes from '@/routes/AuthenticatedRoutes';
 import UnAuthenticatedRoutes from '@/routes/UnAuthenticatedRoutes';
@@ -29,12 +29,16 @@ function Routes() {
   });
 
   if (isLoading) {
-    return <h1>Wczytywanie...</h1>;
+    return (
+      <Loader
+        size="4rem"
+      />
+    );
   }
 
   return (
     <Router>
-      <Suspense fallback={<h1>Wczytywanie...</h1>}>
+      <Suspense fallback={<Loader size="4rem" />}>
         <Modal />
         {isSuccess ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
       </Suspense>
