@@ -10,6 +10,9 @@ const devEnv = dotenv.config({
 
 module.exports = merge(common, {
   mode: 'development',
+  output: {
+    publicPath: '/'
+  },
   devServer: {
     historyApiFallback: true,
     open: true,
