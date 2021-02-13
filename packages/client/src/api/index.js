@@ -4,11 +4,6 @@ import axios from 'axios';
 import { config } from '@config';
 import AuthService from '@/services/AuthService';
 
-const accessToken = localStorage.getItem('access_token');
-if (accessToken) {
-  axios.defaults.headers.common = { Authorization: `bearer ${accessToken}` };
-}
-
 export const api = axios.create({
   withCredentials: true,
   baseURL: config.API_URL,
@@ -31,6 +26,11 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
+const accessToken = localStorage.getItem('access_token');
+if (accessToken) {
+  api.defaults.headers.common = { Authorization: `Bearer ${accessToken}` };
+}
+
 api.interceptors.response.use((response) => response, (error) => {
   const originalRequest = error.config;
 
@@ -52,7 +52,7 @@ api.interceptors.response.use((response) => response, (error) => {
         .then(({ data }) => {
           const newAccessToken = data.data.accessToken;
           AuthService.signUser(newAccessToken);
-          axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+          api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           processQueue(null, newAccessToken);
           resolve(axios(originalRequest));
