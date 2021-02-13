@@ -32,7 +32,7 @@ const verifyRefreshToken = (token) => {
   }
 };
 
-const signTokenAccessToken = (userId) => {
+const signAccessToken = (userId) => {
   const payload = {
     userId,
   };
@@ -68,7 +68,7 @@ const sendRefreshToken = (res, refreshToken) => {
 };
 
 module.exports = {
-  signTokenAccessToken,
+  signAccessToken,
   signRefreshToken,
   sendRefreshToken,
   isAuth,
