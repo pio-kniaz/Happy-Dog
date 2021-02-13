@@ -25,9 +25,6 @@ const verifyRefreshToken = (token) => {
     const { userId } = jwt.verify(token, config.refreshTokenSecret);
     return userId;
   } catch (error) {
-    if (error.message === 'jwt expired') {
-      throw ApiError.unAuthorized('Access token expired');
-    }
     throw ApiError.forbidden();
   }
 };
