@@ -11,17 +11,31 @@ import { colors } from '@/theme/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
+    minHeight: '100%',
     paddingLeft: '220px',
     paddingTop: '64px',
-    backgroundColor: colors.blueGrey[50],
     [theme.breakpoints.down('md')]: {
       paddingLeft: '0',
     },
   },
   content: {
-    minHeight: 'calc(100% - 64px)',
-    padding: '20px',
+    backgroundColor: colors.blueGrey[50],
+    minHeight: 'calc(100% - 90px)',
     width: '100%',
+    padding: '30px 20px',
+    [theme.breakpoints.down('sm')]: {
+      minHeight: 'calc(100% - 58px)',
+    },
+  },
+  footer: {
+    padding: '2rem',
+    backgroundColor: colors.mountainMeadow[600],
+    [theme.breakpoints.down('sm')]: {
+      padding: '1rem',
+    },
+    '& span': {
+      color: colors.blueGrey[50],
+    },
   },
 }));
 
@@ -55,7 +69,7 @@ function MainLayout(props) {
       <main className={classes.content}>
         {children}
       </main>
-      <Footer />
+      <Footer className={classes.footer} />
     </div>
   );
 }
