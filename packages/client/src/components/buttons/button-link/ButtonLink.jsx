@@ -8,23 +8,29 @@ import { colors } from '@/theme/colors';
 import CustomButton from '@components/buttons/custom-button/CustomButton';
 
 const useStyles = makeStyles({
-  root: {
-    color: colors.mountainMeadow[600],
-    background: 'transparent',
-    border: 0,
-    boxShadow: 'none',
-    '&:focus, &:hover, &:active': {
-      background: 'transparent',
-      boxShadow: 'none',
-      textDecoration: 'underline',
-    },
+  root: (isUnderline) => {
+    if (isUnderline) {
+      return {
+        color: colors.mountainMeadow[600],
+        background: 'transparent',
+        border: 0,
+        boxShadow: 'none',
+        '&:focus, &:hover, &:active': {
+          background: 'transparent',
+          boxShadow: 'none',
+          textDecoration: 'underline',
+        },
+      };
+    }
+    return {};
   },
 });
 
 function ButtonLink(props) {
-  const { className, to, ...restProps } = props;
-
-  const classes = useStyles();
+  const {
+    className, to, isUnderline, ...restProps
+  } = props;
+  const classes = useStyles(isUnderline);
 
   const buttonLinkClassName = clsx(classes.root, className);
 
@@ -41,10 +47,12 @@ function ButtonLink(props) {
 ButtonLink.propTypes = {
   to: PropTypes.string.isRequired,
   className: PropTypes.string,
+  isUnderline: PropTypes.bool,
 };
 
 ButtonLink.defaultProps = {
   className: '',
+  isUnderline: true,
 };
 
 export default ButtonLink;
