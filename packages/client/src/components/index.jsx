@@ -5,5 +5,6 @@ export { default as MainLayout } from './layouts/main-layout/MainLayout';
 export { default as BasicLayout } from './layouts/basic-layout/BasicLayout';
 export { default as Modal } from './modal/Modal';
 export { default as Loader } from './loader/Loader';
+export { default as ErrorFallback } from './error-fallback/ErrorFallback';
 export * from './buttons';
 export * from './inputs';
