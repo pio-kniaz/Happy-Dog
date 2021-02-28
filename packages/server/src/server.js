@@ -15,6 +15,7 @@ const app = express();
 // CORS;
 app.use(cors({
   origin: config.corsOrigin,
+  credentials: true,
 }));
 
 // parse application/json

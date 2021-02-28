@@ -3,7 +3,7 @@ const ApiError = require('@/error/ApiError');
 
 const { loginSchemaValidation } = require('@/validations/auth');
 const {
-  signTokenAccessToken, signRefreshToken, verifyRefreshToken, sendRefreshToken,
+  signAccessToken, signRefreshToken, verifyRefreshToken, sendRefreshToken,
 } = require('@/utils/jwt');
 
 // @desc Login user
@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
   }
   try {
     const user = await User.findByCredentials(req.body);
-    const accessToken = signTokenAccessToken(user.id);
+    const accessToken = signAccessToken(user.id);
     const refreshToken = signRefreshToken(user.id);
     user.refreshToken = refreshToken;
     await user.save();
@@ -45,7 +45,7 @@ const logOut = async (req, res, next) => {
     const user = await User.findOne({ _id: req.userId });
     user.refreshToken = '';
     await user.save();
-    res.clearCookie('refreshToken', { path: '/api/user/refresh-token' });
+    res.clearCookie('refreshToken', { path: '/api/auth/refresh-token' });
     return res.status(200).json({
       data: {
         success: true,
@@ -70,7 +70,7 @@ const refreshToken = async (req, res, next) => {
       throw ApiError.forbidden();
     }
     const userId = verifyRefreshToken(token);
-    const newAccessToken = signTokenAccessToken(userId);
+    const newAccessToken = signAccessToken(userId);
     const newRefreshToken = signRefreshToken(userId);
 
     user.refreshToken = newRefreshToken;

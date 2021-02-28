@@ -7,7 +7,7 @@ const getUserMe = async () => {
 };
 
 export const useUserMe = (options) => {
-  const { isLoading, isSuccess } = useQuery('userMe', getUserMe, { ...options });
+  const { isLoading, isSuccess, isError } = useQuery('userMe', getUserMe, { ...options });
 
-  return { isLoading, isSuccess };
+  return { isLoading, isSuccess, isError };
 };

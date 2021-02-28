@@ -25,14 +25,11 @@ const verifyRefreshToken = (token) => {
     const { userId } = jwt.verify(token, config.refreshTokenSecret);
     return userId;
   } catch (error) {
-    if (error.message === 'jwt expired') {
-      throw ApiError.unAuthorized('Access token expired');
-    }
     throw ApiError.forbidden();
   }
 };
 
-const signTokenAccessToken = (userId) => {
+const signAccessToken = (userId) => {
   const payload = {
     userId,
   };
@@ -68,7 +65,7 @@ const sendRefreshToken = (res, refreshToken) => {
 };
 
 module.exports = {
-  signTokenAccessToken,
+  signAccessToken,
   signRefreshToken,
   sendRefreshToken,
   isAuth,
