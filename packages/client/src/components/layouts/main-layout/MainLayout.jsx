@@ -20,19 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backgroundColor: colors.blueGrey[50],
-    minHeight: 'calc(100% - 90px)',
+    minHeight: 'calc(100% - 80px)',
     width: '100%',
     padding: '30px 20px',
-    [theme.breakpoints.down('sm')]: {
-      minHeight: 'calc(100% - 58px)',
-    },
   },
   footer: {
-    padding: '2rem',
+    padding: '1rem',
     backgroundColor: colors.mountainMeadow[600],
-    [theme.breakpoints.down('sm')]: {
-      padding: '1rem',
-    },
     '& span': {
       color: colors.blueGrey[50],
     },

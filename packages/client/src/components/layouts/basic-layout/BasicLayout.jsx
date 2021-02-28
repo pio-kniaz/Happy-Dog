@@ -4,7 +4,7 @@ import { colors } from '@/theme/colors';
 
 import Footer from '@components/layouts/footer/Footer';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     height: '100%',
     minHeight: '100%',
@@ -19,11 +19,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: '0',
     left: '0',
     right: '0',
-    padding: '2rem',
+    padding: '1rem',
     backgroundColor: colors.mountainMeadow[600],
-    [theme.breakpoints.down('sm')]: {
-      padding: '1rem',
-    },
     '& span': {
       color: colors.blueGrey[50],
     },
