@@ -1,10 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-import { CustomButton, ButtonLink } from '@/components';
+import { CustomButton, ButtonLink, ErrorFallback } from '@/components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,14 +14,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       paddingTop: '5rem',
     },
-  },
-  headerTitle: {
-    fontFamily: 'Kalam',
-  },
-  description: {
-    maxWidth: '650px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
   },
   buttons: {
     maxWidth: '400px',
@@ -49,27 +40,10 @@ function ErrorPage() {
       className={classes.root}
     >
       <div className={classes.wrapper}>
-        <Typography
-          className={classes.headerTitle}
-          variant="h1"
-          align="center"
-          display="block"
-          gutterBottom
-        >
-          Something went wrong!
-        </Typography>
-        <Typography
-          className={classes.description}
-          variant="subtitle1"
-          align="center"
-          display="block"
-          gutterBottom
-        >
-          {/* TODO: add description */}
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Voluptatibus eaque a suscipit ut asperiores pariatur
-          lorem500
-        </Typography>
+        <ErrorFallback
+          title="Something went wrong!"
+          description="Unexpected error occurs"
+        />
         <Grid
           container
           alignItems="center"
