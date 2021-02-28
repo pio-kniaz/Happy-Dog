@@ -32,7 +32,7 @@ function AuthenticatedRoutes() {
     },
   });
 
-  if (!isError) {
+  if (isError) {
     return (
       <AppRoute
         layout={BasicLayout}
