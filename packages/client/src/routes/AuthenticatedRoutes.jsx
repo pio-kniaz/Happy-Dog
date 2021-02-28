@@ -10,7 +10,7 @@ import {
 import AuthService from '@/services/AuthService';
 
 const DashboardPage = lazy(() => import('@/pages/dashboard/DashboardPage'));
-const ErrorPage = lazy(() => import('@/pages/error-page/ErrorPage'));
+const ErrorPage = lazy(() => import('@/pages/error/ErrorPage'));
 
 function AuthenticatedRoutes() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function AuthenticatedRoutes() {
     },
   });
 
-  if (isError) {
+  if (!isError) {
     return (
       <AppRoute
         layout={BasicLayout}
